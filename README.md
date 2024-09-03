@@ -1,5 +1,5 @@
 
 
 # Credits
-Julia Abdel-Monem
-Jason Culbertson
+- Julia Abdel-Monem
+- Jason Culbertson

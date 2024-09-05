@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="cs383-platformer"
-run/main_scene="res://levels/character_test.tscn"
+run/main_scene="res://julia/levels/CharacterTest/CharacterTest.tscn"
 config/features=PackedStringArray("4.4", "C#", "Mobile")
 config/icon="res://icon.svg"
 

@@ -21,7 +21,6 @@ public partial class Piggy : CharacterBody2D
 			velocity += GetGravity() * (float)delta;
 		}
 
-
 		// This will be removed/modified later
 		if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
 		{
@@ -46,7 +45,6 @@ public partial class Piggy : CharacterBody2D
 			velocity.X = direction.X * Speed;
 			GetNode<AnimatedSprite2D>("AnimatedSprite2D").Play("walk");
 			GetNode<AnimatedSprite2D>("AnimatedSprite2D").FlipH = velocity.X < 0;
-
 		}
 		else if (IsOnFloor())
 		{

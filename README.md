@@ -8,4 +8,4 @@
 
 # Attributes
 - [Piggy](https://caz-creates-games.itch.io/piggy): *caz-creates-games*
-- [Droids](https://penusbmic.itch.io/sci-fi-character-pack-6): *Penusbmic*
+- [Droid 1](https://penusbmic.itch.io/sci-fi-character-pack-6), [Droid 2](https://penusbmic.itch.io/sci-fi-character-pack-12): *Penusbmic*

@@ -7,7 +7,7 @@ public partial class Piggy : CharacterBody2D
 {
 	public const float WalkSpeed = 300.0f;
 	public const float SprintSpeed = 800.0f;
-	public const float JumpVelocity = -200.0f;
+	public const float JumpVelocity = -600.0f;
 	
 	// As a percentage
 	public const int MaxHealth = 100;

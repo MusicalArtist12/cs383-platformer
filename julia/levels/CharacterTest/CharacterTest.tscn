@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cwhq4at1bx7jq"]
+[gd_scene load_steps=6 format=3 uid="uid://cwhq4at1bx7jq"]
 
 [ext_resource type="Script" path="res://julia/levels/CharacterTest/CharacterTest.cs" id="1_0d263"]
 [ext_resource type="Texture2D" uid="uid://c2i4fthnbcibd" path="res://assets/checkered_pattern.png" id="2_e31kk"]
+[ext_resource type="PackedScene" uid="uid://0ofkuv0avpt4" path="res://jason/interactables/launcher/launcher.tscn" id="3_f7wwl"]
+[ext_resource type="PackedScene" uid="uid://bvrpjueep3mwg" path="res://julia/characters/Piggy/Piggy.tscn" id="4_i67k2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mub4v"]
 size = Vector2(10000, 500)
@@ -31,3 +33,9 @@ stretch_mode = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_mub4v")
+
+[node name="Launcher" parent="." instance=ExtResource("3_f7wwl")]
+position = Vector2(-265, 127)
+
+[node name="Piggy" parent="." instance=ExtResource("4_i67k2")]
+position = Vector2(-312, -6)

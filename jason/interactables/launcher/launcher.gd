@@ -1,7 +1,7 @@
 # Jason Culbertson
 extends Node2D
 
-@export var xVelocity: int = 10
+@export var xVelocity: int = 50
 @export var yVelocity: int = 100
 @onready var animplayer = $AnimatedSprite2D
 

@@ -3,6 +3,9 @@ using System;
 
 public partial class WheelDroid : CharacterBody2D
 {
+	private Timer ChargeTimer;
+	private AnimatedSprite2D Sprite;
+
 	public const float Speed = 150.0f;
 	public CharacterBody2D Enemy = null;
 
@@ -13,45 +16,44 @@ public partial class WheelDroid : CharacterBody2D
 
     public override void _Ready()
     {
-		GetNode<AnimatedSprite2D>("AnimatedSprite2D").Play("idle");
+		ChargeTimer = GetNode<Timer>("ChargeTimer");
+		Sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 
+		Sprite.Play("idle");
+		ChargeTimer.SetPaused(false);
+		
     }
 
-    public override void _Process(double delta)
-    {
-        if (!Awake && IsOnFloor() && Position.DistanceTo(Enemy.Position) < AwareDistance)
+	public void Sleep()
+	{
+		Sprite.PlayBackwards("wake");
+		
+	}
+
+	public void WakeUp()
+	{
+		Sprite.Play("wake");
+	}
+
+	public void SetDirection(float dir)
+	{
+		Vector2 position;
+		position.Y = 0;
+		if (dir > 0)
 		{
-			GetNode<AnimatedSprite2D>("AnimatedSprite2D").Play("wake");
+			Sprite.FlipH = false;
+			position.X = 36;
+			Sprite.Position = position;
 		}
-		if (Awake && IsOnFloor() && Position.DistanceTo(Enemy.Position) > AwareDistance ) 
+		else if (dir < 0)
 		{
-			Awake = false;
-			GetNode<AnimatedSprite2D>("AnimatedSprite2D").PlayBackwards("wake");
+			Sprite.FlipH = true;
+			position.X = -36;
+			Sprite.Position = position;
 		}
+	}
 
-		if (Awake) 
-		{
-				Vector2 position;
-				position.Y = 0;
-				
-
-			if ((Enemy.Position.X - Position.X) < 0)
-			{
-				GetNode<AnimatedSprite2D>("AnimatedSprite2D").FlipH = true;
-				position.X = -36;
-				GetNode<AnimatedSprite2D>("AnimatedSprite2D").Position = position;
-			}
-			else 
-			{
-				GetNode<AnimatedSprite2D>("AnimatedSprite2D").FlipH = false;
-				position.X = 36;
-				GetNode<AnimatedSprite2D>("AnimatedSprite2D").Position = position;
-			}
-			
-
-		}
-
-    }
+    public override void _Process(double delta) {}
 
     public override void _PhysicsProcess(double delta)
 	{
@@ -61,41 +63,71 @@ public partial class WheelDroid : CharacterBody2D
 			velocity += GetGravity() * (float)delta;
 		}
 
-		if (Awake)
-		{			
-			if (Math.Abs(Enemy.Position.X - Position.X) >= ShotDistance) 
+       	if (IsOnFloor() && Position.DistanceTo(Enemy.Position) < AwareDistance)
+		{
+			if (!Awake)
 			{
-				velocity.X = Speed * Math.Sign(Enemy.Position.X - Position.X);
-				GetNode<AnimatedSprite2D>("AnimatedSprite2D").Play("move");
+				WakeUp();
 			}
 			else 
 			{
-				velocity.X = 0;
-				GetNode<AnimatedSprite2D>("AnimatedSprite2D").Play("charge");
+				SetDirection(Enemy.Position.X - Position.X);
+					
 
+				if (Math.Abs(Enemy.Position.X - Position.X) >= ShotDistance) 
+				{
+					velocity.X = Speed * Math.Sign(Enemy.Position.X - Position.X);
+					Sprite.Play("move");
+					ChargeTimer.Stop();
+				}
+				else 
+				{
+					velocity.X = 0;
+					if (!(Sprite.IsPlaying() && Sprite.GetAnimation() == "shoot"))
+					{	
+						Sprite.Play("charge");
+						GD.Print(ChargeTimer.GetTimeLeft());
+
+						if (ChargeTimer.IsStopped()) {
+							ChargeTimer.Start();
+						}
+					}
+				}
 			}
-
 		}
-		else 
-		{
+		else if (IsOnFloor() && Position.DistanceTo(Enemy.Position) > AwareDistance) 
+		{	
 			velocity.X = 0;
+			if (Awake)
+			{
+				Sleep();
+			}
+			else 
+			{
+				Sprite.Play("idle");
+			}
 		}
-
-
-
+	
 		Velocity = velocity;
 		MoveAndSlide();
-		
 	}
 
 
 	public void OnAnimationFinish() 
 	{
-		
-		if (GetNode<AnimatedSprite2D>("AnimatedSprite2D").GetAnimation() == "wake" && !Awake) 
+		if (Sprite.GetAnimation() == "wake" && !Awake) 
 		{
 			Awake = true;
 		}
+		else if (Sprite.GetAnimation() == "wake" && Awake) 
+		{
+			Awake = false;
+		}
 
+	}
+
+	public void OnChargeTimerTimeout() 
+	{	
+		Sprite.Play("shoot");
 	}
 }

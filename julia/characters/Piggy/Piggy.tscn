@@ -7,7 +7,7 @@
 size = Vector2(18, 18)
 
 [node name="Piggy" type="CharacterBody2D"]
-scale = Vector2(3, 3)
+scale = Vector2(2.5, 2.5)
 script = ExtResource("1_p0k7k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

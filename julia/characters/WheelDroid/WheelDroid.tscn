@@ -1,10 +1,11 @@
-[gd_scene load_steps=38 format=3 uid="uid://2wspuye35oeg"]
+[gd_scene load_steps=41 format=3 uid="uid://2wspuye35oeg"]
 
 [ext_resource type="Script" path="res://julia/characters/WheelDroid/WheelDroid.cs" id="1_20oop"]
 [ext_resource type="Texture2D" uid="uid://c3nwcvteq5riq" path="res://assets/Bot Wheel/death.png" id="2_05fyq"]
 [ext_resource type="Texture2D" uid="uid://rphekopsvmuv" path="res://assets/Bot Wheel/charge.png" id="2_jmfsa"]
 [ext_resource type="Texture2D" uid="uid://csr2yywshb7r2" path="res://assets/Bot Wheel/wake.png" id="3_f1rlh"]
 [ext_resource type="Texture2D" uid="uid://colhy54o0sujb" path="res://assets/Bot Wheel/static idle.png" id="3_qmnjm"]
+[ext_resource type="Texture2D" uid="uid://b0fdp756jsnan" path="res://assets/Bot Wheel/damaged.png" id="3_y10d0"]
 [ext_resource type="Texture2D" uid="uid://bmhca27dkjy6u" path="res://assets/Bot Wheel/move with FX.png" id="4_j7eej"]
 [ext_resource type="Texture2D" uid="uid://lv7nbfhv3ci0" path="res://assets/Bot Wheel/shoot with FX.png" id="6_1hi7m"]
 
@@ -23,6 +24,14 @@ region = Rect2(5, 52, 112, 26)
 [sub_resource type="AtlasTexture" id="AtlasTexture_nd61x"]
 atlas = ExtResource("2_jmfsa")
 region = Rect2(5, 78, 112, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m16wh"]
+atlas = ExtResource("3_y10d0")
+region = Rect2(0, 0, 117, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vh57x"]
+atlas = ExtResource("3_y10d0")
+region = Rect2(0, 26, 117, 26)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c0b4x"]
 atlas = ExtResource("2_05fyq")
@@ -141,6 +150,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_m16wh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vh57x")
+}],
+"loop": false,
+"name": &"damaged",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_c0b4x")
 }, {
 "duration": 1.0,
@@ -247,8 +267,7 @@ script = ExtResource("1_20oop")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(36, 0)
 sprite_frames = SubResource("SpriteFrames_hpclr")
-animation = &"move"
-frame_progress = 0.143316
+animation = &"damaged"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_uk2l1")

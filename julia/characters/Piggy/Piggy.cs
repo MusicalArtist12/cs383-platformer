@@ -10,8 +10,8 @@ public partial class Piggy : CharacterBody2D
 
 	public const float Accel = 20.0f;
 	public const float Decel = 10.0f;
-	public const float WalkSpeed = 300.0f;
-	public const float SprintSpeed = 800.0f;
+	public const float WalkSpeed = 200.0f;
+	public const float SprintSpeed = 400.0f;
 	public const float JumpVelocity = -200.0f;
 	
 	float Speed = WalkSpeed;
@@ -42,7 +42,6 @@ public partial class Piggy : CharacterBody2D
 
     public override void _PhysicsProcess(double delta)
 	{
-		GD.Print(Health);
 		Vector2 velocity = Velocity;
 		
 		// Add the gravity.
@@ -56,7 +55,6 @@ public partial class Piggy : CharacterBody2D
 		{
 			velocity.Y = JumpVelocity;
 		}
-
 
 		if (Input.IsActionPressed("MainCharacterSprint") && IsOnFloor()) 
 		{
@@ -83,14 +81,15 @@ public partial class Piggy : CharacterBody2D
 			}
 
 			
-			if (velocity.X > 0)
+			if (Mathf.Abs(velocity.X) > 0)
 			{
 				Sprite.Play("walk");
 				
-				Sprite.SpeedScale = velocity.X / WalkSpeed;
+				Sprite.SpeedScale = Mathf.Abs(velocity.X) / WalkSpeed;
 			}
 			else
-			{
+			{	
+				Sprite.SpeedScale = 1.0f;
 				Sprite.Play("idle");
 			}
 

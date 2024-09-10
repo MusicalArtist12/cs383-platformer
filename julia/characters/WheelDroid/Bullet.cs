@@ -29,7 +29,12 @@ public partial class Bullet : CharacterBody2D
 				piggy.TakeDamage(10);
 			}
 
-			GetParent().RemoveChild(this);
+			QueueFree();
 		}
+	}
+
+	public void OnDeathTimerTimeout()
+	{
+		QueueFree();
 	}
 }

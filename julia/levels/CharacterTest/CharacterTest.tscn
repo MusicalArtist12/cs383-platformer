@@ -34,7 +34,7 @@ stretch_mode = 1
 shape = SubResource("RectangleShape2D_mub4v")
 
 [node name="Piggy" parent="." instance=ExtResource("3_fm6vm")]
-position = Vector2(-3, 62)
+position = Vector2(0.999985, 34)
 
 [node name="Launcher" parent="." instance=ExtResource("4_7ys76")]
 position = Vector2(308, 131)
@@ -43,4 +43,4 @@ position = Vector2(308, 131)
 position = Vector2(441, 131)
 
 [node name="WheelDroid" parent="." instance=ExtResource("4_yqw2c")]
-position = Vector2(-181, 71)
+position = Vector2(151, 66)

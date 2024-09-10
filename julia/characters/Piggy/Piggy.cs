@@ -34,6 +34,7 @@ public partial class Piggy : CharacterBody2D
 	public void TakeDamage(int loss) 
 	{
 		Health -= loss;
+		Sprite.SpeedScale = 1.0f;
 		Sprite.Play("damaged");
 	}
 

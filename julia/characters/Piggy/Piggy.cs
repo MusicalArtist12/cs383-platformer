@@ -50,8 +50,7 @@ public partial class Piggy : CharacterBody2D
 			velocity += GetGravity() * (float)delta;
 		}
 
-		// This will be removed/modified later
-		if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
+		if (Input.IsActionJustPressed("MainCharacterJump") && IsOnFloor())
 		{
 			velocity.Y = JumpVelocity;
 		}

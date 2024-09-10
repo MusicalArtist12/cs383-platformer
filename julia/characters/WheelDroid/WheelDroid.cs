@@ -45,7 +45,7 @@ public partial class WheelDroid : CharacterBody2D
 		Sprite.Play("idle");
 		ChargeTimer.SetPaused(false);
 		
-
+		// Bind to the first possible enemy. Assuming singleplayer and that there will only be one Piggy.
 		foreach (Node2D child in GetParent().GetChildren()) {
 			if (child is Piggy) {
 				Enemy = (Piggy)child;
@@ -146,7 +146,6 @@ public partial class WheelDroid : CharacterBody2D
 		Velocity = velocity;
 		MoveAndSlide();
 	}
-
 
 	public void OnAnimationFinish() 
 	{

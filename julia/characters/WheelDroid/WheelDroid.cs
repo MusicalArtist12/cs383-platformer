@@ -45,6 +45,13 @@ public partial class WheelDroid : CharacterBody2D
 		Sprite.Play("idle");
 		ChargeTimer.SetPaused(false);
 		
+
+		foreach (Node2D child in GetParent().GetChildren()) {
+			if (child is Piggy) {
+				Enemy = (Piggy)child;
+				break;
+			}
+		}
     }
 
 	public void Sleep()

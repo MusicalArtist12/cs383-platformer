@@ -9,33 +9,35 @@ public partial class WheelDroid : CharacterBody2D
 	private AnimatedSprite2D Sprite;
 	private Piggy Enemy = null;
 
-	[Export]
-	private float BulletSpeed = 1000.0f;
+	[ExportGroup("Movement")]
 	[Export]
 	private float Accel = 5.0f;
 	[Export]
 	private float Decel = 5.0f;
 	[Export]
-	private float ShotRecoil = 20.0f;
-	[Export]
 	private float Speed = 150.0f;
+
+	[ExportGroup("Weapon")]
 	[Export]
-	// The distance at which the bot wakes up
+	private float ChargeTime = 1.0f;
+	[Export]
+	private float BulletSpeed = 1000.0f;
+	[Export]
+	private float ShotRecoil = 20.0f;
+
+	[ExportGroup("AI")]
+	[Export]
 	private float AwareDistance = 800;
 	[Export]
-	// The distance at which to shoot
-	private float ShotDistance = 400;
+	private float ShotDistance = 400;	
+	private bool Awake = false;
+
+	[ExportGroup("Health")]
 	[Export]
 	public int MaxHealth = 100;
+	private int Health; 
 
-	bool Awake = false;
-
-	private int Health;
-
-	public int getHealth() 
-	{
-		return Health;
-	}
+	public int GetHealth() { return Health; }
 
 	public void TakeDamage(int loss) 
 	{
@@ -51,7 +53,7 @@ public partial class WheelDroid : CharacterBody2D
 		Sprite.Play("idle");
 		ChargeTimer.SetPaused(false);
 		
-		// Bind to the first possible enemy. Assuming singleplayer and that there will only be one Piggy.
+		// Bind to the first possible enemy. Assume singleplayer and that there will only be one Piggy.
 		foreach (Node2D child in GetParent().GetChildren()) {
 			if (child is Piggy) {
 				Enemy = (Piggy)child;
@@ -60,24 +62,15 @@ public partial class WheelDroid : CharacterBody2D
 		}
     }
 
-	public void Sleep()
-	{
-		Sprite.PlayBackwards("wake");
-	}
-
-	public void WakeUp()
-	{
-		Sprite.Play("wake");
-	}
-
 	public void SetDirection(float dir)
 	{
+		// this is necessary since the sprite isn't centered in its container
 		Vector2 position;
 		position.Y = 0;
 		if (dir > 0)
 		{
 			Sprite.FlipH = false;
-			position.X = 36;
+			position.X = 36;		
 			Sprite.Position = position;
 		}
 		else if (dir < 0)
@@ -88,7 +81,14 @@ public partial class WheelDroid : CharacterBody2D
 		}
 	}
 
-    public override void _Process(double delta) {}
+	// don't interrupt "shoot" or "damaged"
+	private bool CanChangeAnimation()
+	{
+		return !(
+			Sprite.IsPlaying() && 
+			(Sprite.GetAnimation() == "shoot" || Sprite.GetAnimation() == "damaged")
+		);
+	}
 
     public override void _PhysicsProcess(double delta)
 	{
@@ -102,16 +102,19 @@ public partial class WheelDroid : CharacterBody2D
 		{
 			if (!Awake)
 			{
-				WakeUp();
+				Sprite.Play("wake");
 			}
 			else 
 			{
 				SetDirection(Enemy.Position.X - Position.X);
 
-				if (Math.Abs(Enemy.Position.X - Position.X) >= ShotDistance && !(Sprite.IsPlaying() && Sprite.GetAnimation() == "shoot")) 
+				if (Math.Abs(Enemy.Position.X - Position.X) >= ShotDistance && CanChangeAnimation()) 
 				{
-					velocity.X = Mathf.MoveToward(velocity.X, Speed * Math.Sign(Enemy.Position.X - Position.X), Accel);
-
+					velocity.X = Mathf.MoveToward(
+						velocity.X, 
+						Speed * Math.Sign(Enemy.Position.X - Position.X), 
+						Accel
+					);
 					Sprite.Play("move");
 					ChargeTimer.Stop();
 				}
@@ -119,20 +122,18 @@ public partial class WheelDroid : CharacterBody2D
 				{
 					velocity.X = Mathf.MoveToward(velocity.X, 0, Decel);
 
-					if (!(Sprite.IsPlaying() && (Sprite.GetAnimation() == "shoot" || Sprite.GetAnimation() == "damaged")))
+					if (CanChangeAnimation())
 					{	
 						Sprite.Play("charge");
 
 						if (ChargeTimer.IsStopped()) {
-							ChargeTimer.Start();
+							ChargeTimer.Start(ChargeTime);
 						}
 					}
-
 					if (Sprite.GetAnimation() == "shoot" && Sprite.GetFrame() == 0)
 					{
-						velocity.X -= (ShotRecoil * Math.Sign(Enemy.Position.X - Position.X));
+						velocity.X += ShotRecoil * Math.Sign(Position.X - Enemy.Position.X);
 					}
-
 				}
 			}
 		}
@@ -141,7 +142,7 @@ public partial class WheelDroid : CharacterBody2D
 			if (Awake)
 			{	
 				velocity.X = 0;
-				Sleep();
+				Sprite.PlayBackwards("wake");
 			}
 			else 
 			{
@@ -169,12 +170,10 @@ public partial class WheelDroid : CharacterBody2D
 	public void OnChargeTimerTimeout() 
 	{	
 		Sprite.Play("shoot");
-		Bullet bullet = (Bullet)ResourceLoader.Load<PackedScene>("res:///julia/characters/WheelDroid/Bullet.tscn").Instantiate();
-		Vector2 position = Position;
-		position.X += Sprite.FlipH ? -100 : 100;
-
-		bullet.Position = position;
-
+		Bullet bullet = (Bullet)ResourceLoader.Load<PackedScene>(
+			"res:///julia/characters/WheelDroid/Bullet.tscn"
+		).Instantiate();
+		bullet.Position = new Vector2(Position.X + (Sprite.FlipH ? -100 : 100), Position.Y);
 		bullet.Velocity = new Vector2(Sprite.FlipH ? -1.0f * BulletSpeed : BulletSpeed, 0.0f);
 		GetParent().AddChild(bullet);
 	}

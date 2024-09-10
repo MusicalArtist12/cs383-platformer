@@ -44,4 +44,3 @@ position = Vector2(308, 131)
 
 [node name="Launcher2" parent="." instance=ExtResource("4_7ys76")]
 position = Vector2(441, 131)
-xVelocity = -50

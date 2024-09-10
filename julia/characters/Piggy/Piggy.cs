@@ -5,36 +5,37 @@ using System;
 
 public partial class Piggy : CharacterBody2D
 {
+	// References to commonly used child nodes
 	private AnimatedSprite2D Sprite;
 	private Timer RedFlashTimer;
 
+	[ExportGroup("Movement")]
 	[Export]
-	private float Accel = 20.0f;
+	private float Accel = 20.0f; // The rate at which the character increases speed
 	[Export]
-	private float Decel = 10.0f;
+	private float Decel = 10.0f; // The rate at which the character stops moving
 	[Export]
-	private float WalkSpeed = 200.0f;
+	private float WalkSpeed = 200.0f; 
 	[Export]
 	private float SprintSpeed = 400.0f;
 	[Export]
 	private float JumpVelocity = -200.0f;
+	private float Speed;
 	
+	[ExportGroup("Health")]
 	[Export]
 	public int MaxHealth = 100;
-	
+	[Export]
+	public float RedFlashTime = 0.5f;
 	private int Health;
-	private float Speed;
 
-	public int getHealth() 
-	{
-		return Health;
-	}
+	public int GetHealth() { return Health; }
 
 	public void TakeDamage(int loss) 
 	{
 		Health -= loss;
 		Sprite.Modulate = new Color(1.0f, 0.0f, 0.0f);
-		RedFlashTimer.Start();
+		RedFlashTimer.Start(RedFlashTime);
 	}
 
     public override void _Ready()
@@ -50,12 +51,10 @@ public partial class Piggy : CharacterBody2D
 	{
 		Vector2 velocity = Velocity;
 		
-		// Add the gravity.
 		if (!IsOnFloor())
 		{
 			velocity += GetGravity() * (float)delta;
 		}
-
 		if (Input.IsActionJustPressed("MainCharacterJump") && IsOnFloor())
 		{
 			velocity.Y = JumpVelocity;
@@ -70,9 +69,12 @@ public partial class Piggy : CharacterBody2D
 			Speed = WalkSpeed;
 		}
 		
-		// Get the input direction and handle the movement/deceleration.
-		// As good practice, you should replace UI actions with custom gameplay actions.
-		Vector2 direction = Input.GetVector("MainCharacterLeft", "MainCharacterRight", "NullInput", "NullInput");
+		Vector2 direction = Input.GetVector(
+			"MainCharacterLeft", 
+			"MainCharacterRight", 
+			"NullInput", 
+			"NullInput"
+		);
 		if (IsOnFloor()) 
 		{
 			if (direction != Vector2.Zero)
@@ -85,7 +87,6 @@ public partial class Piggy : CharacterBody2D
 				velocity.X = Mathf.MoveToward(velocity.X, 0, Decel);
 			}
 
-			
 			if (Mathf.Abs(velocity.X) > 0)
 			{
 				Sprite.Play("walk");
@@ -97,8 +98,6 @@ public partial class Piggy : CharacterBody2D
 				Sprite.SpeedScale = 1.0f;
 				Sprite.Play("idle");
 			}
-
-
 		}
 		
 		Velocity = velocity;

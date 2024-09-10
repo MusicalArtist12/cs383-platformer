@@ -7,23 +7,29 @@ public partial class WheelDroid : CharacterBody2D
 {
 	private Timer ChargeTimer;
 	private AnimatedSprite2D Sprite;
+	private Piggy Enemy = null;
 
-	public const float BulletSpeed = 1000.0f;
-	public const float Accel = 5.0f;
-	public const float Decel = 5.0f;
-	public const float ShotRecoil = 20.0f;
-	public const float Speed = 150.0f;
-	public Piggy Enemy = null;
-
+	[Export]
+	private float BulletSpeed = 1000.0f;
+	[Export]
+	private float Accel = 5.0f;
+	[Export]
+	private float Decel = 5.0f;
+	[Export]
+	private float ShotRecoil = 20.0f;
+	[Export]
+	private float Speed = 150.0f;
+	[Export]
 	// The distance at which the bot wakes up
-	public float AwareDistance = 800;
-	
+	private float AwareDistance = 800;
+	[Export]
 	// The distance at which to shoot
-	public float ShotDistance = 400;
+	private float ShotDistance = 400;
+	[Export]
+	public int MaxHealth = 100;
 
 	bool Awake = false;
 
-		public const int MaxHealth = 100;
 	private int Health;
 
 	public int getHealth() 

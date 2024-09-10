@@ -8,17 +8,22 @@ public partial class Piggy : CharacterBody2D
 	private AnimatedSprite2D Sprite;
 	private Timer RedFlashTimer;
 
-	public const float Accel = 20.0f;
-	public const float Decel = 10.0f;
-	public const float WalkSpeed = 200.0f;
-	public const float SprintSpeed = 400.0f;
-	public const float JumpVelocity = -200.0f;
+	[Export]
+	private float Accel = 20.0f;
+	[Export]
+	private float Decel = 10.0f;
+	[Export]
+	private float WalkSpeed = 200.0f;
+	[Export]
+	private float SprintSpeed = 400.0f;
+	[Export]
+	private float JumpVelocity = -200.0f;
 	
-	float Speed = WalkSpeed;
-
-	// As a percentage
-	public const int MaxHealth = 100;
+	[Export]
+	public int MaxHealth = 100;
+	
 	private int Health;
+	private float Speed;
 
 	public int getHealth() 
 	{
@@ -33,7 +38,8 @@ public partial class Piggy : CharacterBody2D
 	}
 
     public override void _Ready()
-    {
+    {	
+		Speed = WalkSpeed;
 		Health = MaxHealth;
 		Sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		RedFlashTimer = GetNode<Timer>("RedFlashTimer");

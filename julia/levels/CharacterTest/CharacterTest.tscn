@@ -38,4 +38,4 @@ shape = SubResource("RectangleShape2D_mub4v")
 position = Vector2(-3, 62)
 
 [node name="WheelDroid" parent="." instance=ExtResource("4_yqw2c")]
-position = Vector2(-293, 64)
+position = Vector2(-284, -73)

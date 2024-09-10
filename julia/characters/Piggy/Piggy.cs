@@ -5,6 +5,8 @@ using System;
 
 public partial class Piggy : CharacterBody2D
 {
+	public const float Accel = 5.0f;
+	public const float Decel = 10.0f;
 	public const float WalkSpeed = 300.0f;
 	public const float SprintSpeed = 800.0f;
 	public const float JumpVelocity = -200.0f;
@@ -20,7 +22,7 @@ public partial class Piggy : CharacterBody2D
 		return Health;
 	}
 
-	public void takeDamage(int loss) 
+	public void TakeDamage(int loss) 
 	{
 		Health -= loss;
 	}
@@ -32,6 +34,7 @@ public partial class Piggy : CharacterBody2D
 
     public override void _PhysicsProcess(double delta)
 	{
+		GD.Print(Health);
 		Vector2 velocity = Velocity;
 		
 		// Add the gravity.
@@ -49,11 +52,11 @@ public partial class Piggy : CharacterBody2D
 
 		if (Input.IsActionPressed("MainCharacterSprint") && IsOnFloor()) 
 		{
-			Speed = Mathf.MoveToward(Speed, SprintSpeed, Speed);
+			Speed = Mathf.MoveToward(Speed, SprintSpeed, Accel);
 		}
 		else if (IsOnFloor())
 		{
-			Speed = Mathf.MoveToward(Speed, WalkSpeed, Speed);
+			Speed = Mathf.MoveToward(Speed, WalkSpeed, Accel);
 		}
 		
 		// Get the input direction and handle the movement/deceleration.
@@ -72,7 +75,7 @@ public partial class Piggy : CharacterBody2D
 			else
 			{
 				GetNode<AnimatedSprite2D>("AnimatedSprite2D").Play("idle");
-				velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
+				velocity.X = Mathf.MoveToward(Velocity.X, 0, Decel);
 			}
 
 		}

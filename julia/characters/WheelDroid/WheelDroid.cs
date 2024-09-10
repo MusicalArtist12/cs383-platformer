@@ -6,10 +6,16 @@ public partial class WheelDroid : CharacterBody2D
 	private Timer ChargeTimer;
 	private AnimatedSprite2D Sprite;
 
+	public const float Accel = 5.0f;
+	public const float Decel = 5.0f;
+	public const float ShotRecoil = 20.0f;
 	public const float Speed = 150.0f;
-	public CharacterBody2D Enemy = null;
+	public Piggy Enemy = null;
 
+	// The distance at which the bot wakes up
 	public float AwareDistance = 800;
+	
+	// The distance at which to shoot
 	public float ShotDistance = 400;
 
 	bool Awake = false;
@@ -27,7 +33,6 @@ public partial class WheelDroid : CharacterBody2D
 	public void Sleep()
 	{
 		Sprite.PlayBackwards("wake");
-		
 	}
 
 	public void WakeUp()
@@ -72,32 +77,37 @@ public partial class WheelDroid : CharacterBody2D
 			else 
 			{
 				SetDirection(Enemy.Position.X - Position.X);
-					
 
-				if (Math.Abs(Enemy.Position.X - Position.X) >= ShotDistance) 
+				if (Math.Abs(Enemy.Position.X - Position.X) >= ShotDistance && !(Sprite.IsPlaying() && Sprite.GetAnimation() == "shoot")) 
 				{
-					velocity.X = Speed * Math.Sign(Enemy.Position.X - Position.X);
+					velocity.X = Mathf.MoveToward(velocity.X, Speed * Math.Sign(Enemy.Position.X - Position.X), Accel);
+
 					Sprite.Play("move");
 					ChargeTimer.Stop();
 				}
 				else 
 				{
-					velocity.X = 0;
+					velocity.X = Mathf.MoveToward(velocity.X, 0, Decel);
+
 					if (!(Sprite.IsPlaying() && Sprite.GetAnimation() == "shoot"))
 					{	
 						Sprite.Play("charge");
-						GD.Print(ChargeTimer.GetTimeLeft());
 
 						if (ChargeTimer.IsStopped()) {
 							ChargeTimer.Start();
 						}
 					}
+
+					if (Sprite.GetAnimation() == "shoot" && Sprite.GetFrame() == 0)
+					{
+						velocity.X = velocity.X - (ShotRecoil * Math.Sign(Enemy.Position.X - Position.X));
+					}
+
 				}
 			}
 		}
 		else if (IsOnFloor() && Position.DistanceTo(Enemy.Position) > AwareDistance) 
 		{	
-			velocity.X = 0;
 			if (Awake)
 			{
 				Sleep();
@@ -107,7 +117,7 @@ public partial class WheelDroid : CharacterBody2D
 				Sprite.Play("idle");
 			}
 		}
-	
+
 		Velocity = velocity;
 		MoveAndSlide();
 	}
@@ -129,5 +139,10 @@ public partial class WheelDroid : CharacterBody2D
 	public void OnChargeTimerTimeout() 
 	{	
 		Sprite.Play("shoot");
+		if (Enemy.Position.X - Position.X < AwareDistance && Enemy.Position.Y - Position.Y < 50) 
+		{
+			Enemy.TakeDamage(20);
+
+		}
 	}
 }

@@ -42,7 +42,8 @@ public partial class Piggy : CharacterBody2D
 		Vector2 direction = Input.GetVector("MainCharacterLeft", "MainCharacterRight", "NullInput", "NullInput");
 		if (direction != Vector2.Zero && IsOnFloor())
 		{
-			velocity.X = direction.X * Speed;
+			velocity.X = Mathf.MoveToward(velocity.X, direction.X * Speed, Speed);
+			// velocity.X = direction.X * Speed;
 			GetNode<AnimatedSprite2D>("AnimatedSprite2D").Play("walk");
 			GetNode<AnimatedSprite2D>("AnimatedSprite2D").FlipH = velocity.X < 0;
 		}

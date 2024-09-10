@@ -34,8 +34,7 @@ public partial class Piggy : CharacterBody2D
 	public void TakeDamage(int loss) 
 	{
 		Health -= loss;
-		Sprite.Modulate = new Color(1.0f, 0.0f, 0.0f);
-		RedFlashTimer.Start(RedFlashTime);
+		Sprite.Play("damaged");
 	}
 
     public override void _Ready()
@@ -43,8 +42,6 @@ public partial class Piggy : CharacterBody2D
 		Speed = WalkSpeed;
 		Health = MaxHealth;
 		Sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-		RedFlashTimer = GetNode<Timer>("RedFlashTimer");
-		RedFlashTimer.SetPaused(false);
     }
 
     public override void _PhysicsProcess(double delta)
@@ -89,14 +86,22 @@ public partial class Piggy : CharacterBody2D
 
 			if (Mathf.Abs(velocity.X) > 0)
 			{
-				Sprite.Play("walk");
+				if (!(Sprite.IsPlaying() && Sprite.GetAnimation() == "damaged"))
+				{
+					Sprite.Play("walk");
+				}
+				
 				
 				Sprite.SpeedScale = Mathf.Abs(velocity.X) / WalkSpeed;
 			}
 			else
 			{	
 				Sprite.SpeedScale = 1.0f;
-				Sprite.Play("idle");
+				if (!(Sprite.IsPlaying() && Sprite.GetAnimation() == "damaged")) 
+				{
+					Sprite.Play("idle");
+				}
+				
 			}
 		}
 		
@@ -104,8 +109,4 @@ public partial class Piggy : CharacterBody2D
 		MoveAndSlide();
 	}
 
-	public void OnRedFlashTimerTimeout()
-	{
-		Sprite.Modulate = new Color(1.0f, 1.0f, 1.0f);
-	}
 }

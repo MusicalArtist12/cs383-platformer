@@ -4,7 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://bxrx6vstw6vxj" path="res://assets/piggy_sprite_frame.tres" id="2_ird1v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3fnjw"]
-size = Vector2(18, 18)
+size = Vector2(18, 20)
 
 [node name="Piggy" type="CharacterBody2D"]
 scale = Vector2(2.5, 2.5)
@@ -24,7 +24,3 @@ offset = Vector2(0, -200)
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
-
-[node name="RedFlashTimer" type="Timer" parent="."]
-
-[connection signal="timeout" from="RedFlashTimer" to="." method="OnRedFlashTimerTimeout"]

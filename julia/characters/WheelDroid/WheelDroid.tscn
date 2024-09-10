@@ -248,7 +248,7 @@ script = ExtResource("1_20oop")
 position = Vector2(36, 0)
 sprite_frames = SubResource("SpriteFrames_hpclr")
 animation = &"move"
-frame_progress = 0.93465
+frame_progress = 0.143316
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_uk2l1")

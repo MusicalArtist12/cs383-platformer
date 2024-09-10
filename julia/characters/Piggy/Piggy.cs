@@ -5,7 +5,10 @@ using System;
 
 public partial class Piggy : CharacterBody2D
 {
-	public const float Accel = 5.0f;
+	private AnimatedSprite2D Sprite;
+	private Timer RedFlashTimer;
+
+	public const float Accel = 20.0f;
 	public const float Decel = 10.0f;
 	public const float WalkSpeed = 300.0f;
 	public const float SprintSpeed = 800.0f;
@@ -25,11 +28,16 @@ public partial class Piggy : CharacterBody2D
 	public void TakeDamage(int loss) 
 	{
 		Health -= loss;
+		Sprite.Modulate = new Color(1.0f, 0.0f, 0.0f);
+		RedFlashTimer.Start();
 	}
 
     public override void _Ready()
     {
 		Health = MaxHealth;
+		Sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		RedFlashTimer = GetNode<Timer>("RedFlashTimer");
+		RedFlashTimer.SetPaused(false);
     }
 
     public override void _PhysicsProcess(double delta)
@@ -52,11 +60,11 @@ public partial class Piggy : CharacterBody2D
 
 		if (Input.IsActionPressed("MainCharacterSprint") && IsOnFloor()) 
 		{
-			Speed = Mathf.MoveToward(Speed, SprintSpeed, Accel);
+			Speed = SprintSpeed;
 		}
 		else if (IsOnFloor())
 		{
-			Speed = Mathf.MoveToward(Speed, WalkSpeed, Accel);
+			Speed = WalkSpeed;
 		}
 		
 		// Get the input direction and handle the movement/deceleration.
@@ -66,21 +74,35 @@ public partial class Piggy : CharacterBody2D
 		{
 			if (direction != Vector2.Zero)
 			{
-				velocity.X = direction.X * Speed;
-				GetNode<AnimatedSprite2D>("AnimatedSprite2D").Play("walk");
-				GetNode<AnimatedSprite2D>("AnimatedSprite2D").FlipH = velocity.X < 0;
-				GetNode<AnimatedSprite2D>("AnimatedSprite2D").SpeedScale = Speed / WalkSpeed;
+				Sprite.FlipH = direction.X < 0;
+				velocity.X = Mathf.MoveToward(velocity.X, direction.X * Speed, Accel);
+			}
+			else 
+			{
+				velocity.X = Mathf.MoveToward(velocity.X, 0, Decel);
+			}
 
+			
+			if (velocity.X > 0)
+			{
+				Sprite.Play("walk");
+				
+				Sprite.SpeedScale = velocity.X / WalkSpeed;
 			}
 			else
 			{
-				GetNode<AnimatedSprite2D>("AnimatedSprite2D").Play("idle");
-				velocity.X = Mathf.MoveToward(Velocity.X, 0, Decel);
+				Sprite.Play("idle");
 			}
+
 
 		}
 		
 		Velocity = velocity;
 		MoveAndSlide();
+	}
+
+	public void OnRedFlashTimerTimeout()
+	{
+		Sprite.Modulate = new Color(1.0f, 1.0f, 1.0f);
 	}
 }

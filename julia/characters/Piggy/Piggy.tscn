@@ -24,4 +24,6 @@ offset = Vector2(0, -200)
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
+drag_left_margin = 0.5
+drag_right_margin = 0.5
 editor_draw_drag_margin = true

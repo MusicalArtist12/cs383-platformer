@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://sdrrf2df0v3s"]
+
+[ext_resource type="Texture2D" uid="uid://xdxn1xlxvolr" path="res://assets/wings_modified.png" id="1_81hgy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_av0o4"]
+atlas = ExtResource("1_81hgy")
+region = Rect2(126, 0, 63, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsjo3"]
+atlas = ExtResource("1_81hgy")
+region = Rect2(63, 0, 63, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ywand"]
+atlas = ExtResource("1_81hgy")
+region = Rect2(0, 0, 63, 46)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t3ajc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_av0o4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsjo3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ywand")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsjo3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Wings" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_t3ajc")
+frame = 2
+frame_progress = 0.683069

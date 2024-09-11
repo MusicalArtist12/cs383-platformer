@@ -36,7 +36,6 @@ public partial class Piggy : Character
 		Sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
     }
 
-
     public override void _PhysicsProcess(double delta)
 	{
 		GravityFallDamage(delta);

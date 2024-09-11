@@ -35,12 +35,11 @@ public partial class WheelDroid : Character
 	private float ShotDistance = 400;	
 	private bool Awake = false;
 
+
 	public override void TakeDamage(int loss) 
 	{
 		Health -= loss;
 		Sprite.Play("damaged");
-
-		GD.Print(Health);
 
 		if (Health <= 0) 
 		{
@@ -95,17 +94,18 @@ public partial class WheelDroid : Character
 
     public override void _PhysicsProcess(double delta)
 	{
+		GravityFallDamage(delta);
 		Vector2 velocity = Velocity;
-		if (!IsOnFloor())
-		{
-			velocity += GetGravity() * (float)delta;
-		}
+
 
        	if (IsOnFloor() && Position.DistanceTo(Enemy.Position) < AwareDistance)
 		{
 			if (!Awake)
 			{
-				Sprite.Play("wake");
+				if (CanChangeAnimation())
+				{
+					Sprite.Play("wake");
+				}
 			}
 			else 
 			{
@@ -118,7 +118,11 @@ public partial class WheelDroid : Character
 						Speed * Math.Sign(Enemy.Position.X - Position.X), 
 						Accel
 					);
-					Sprite.Play("move");
+					if (CanChangeAnimation()) 
+					{
+						Sprite.Play("move");
+					}
+					
 					ChargeTimer.Stop();
 				}
 				else 
@@ -133,10 +137,7 @@ public partial class WheelDroid : Character
 							ChargeTimer.Start(ChargeTime);
 						}
 					}
-					if (Sprite.GetAnimation() == "shoot" && Sprite.GetFrame() == 0)
-					{
-						velocity.X += ShotRecoil * Math.Sign(Position.X - Enemy.Position.X);
-					}
+
 				}
 			}
 		}
@@ -145,7 +146,10 @@ public partial class WheelDroid : Character
 			if (Awake)
 			{	
 				velocity.X = 0;
-				Sprite.PlayBackwards("wake");
+				if (CanChangeAnimation())
+				{
+					Sprite.PlayBackwards("wake");
+				}
 			}
 			else 
 			{
@@ -170,6 +174,10 @@ public partial class WheelDroid : Character
 		else if (Sprite.GetAnimation() == "death")
 		{
 			QueueFree();
+		}
+		else if (Sprite.GetAnimation() == "shoot")
+		{
+			Velocity = new Vector2(Velocity.X + ShotRecoil * Math.Sign(Position.X - Enemy.Position.X), Velocity.Y);
 		}
 
 	}

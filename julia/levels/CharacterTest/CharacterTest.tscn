@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://c2i4fthnbcibd" path="res://assets/checkered_pattern.png" id="2_e31kk"]
 [ext_resource type="PackedScene" uid="uid://bvrpjueep3mwg" path="res://julia/characters/Piggy/Piggy.tscn" id="3_fm6vm"]
+[ext_resource type="PackedScene" uid="uid://2wspuye35oeg" path="res://julia/characters/WheelDroid/WheelDroid.tscn" id="4_1opel"]
 [ext_resource type="PackedScene" uid="uid://0ofkuv0avpt4" path="res://jason/interactables/launcher/launcher.tscn" id="4_7ys76"]
-[ext_resource type="PackedScene" uid="uid://2wspuye35oeg" path="res://julia/characters/WheelDroid/WheelDroid.tscn" id="4_yqw2c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mub4v"]
 size = Vector2(10000, 500)
@@ -34,7 +34,7 @@ stretch_mode = 1
 shape = SubResource("RectangleShape2D_mub4v")
 
 [node name="Piggy" parent="." instance=ExtResource("3_fm6vm")]
-position = Vector2(-18, -98)
+position = Vector2(-263, 88.9999)
 
 [node name="Launcher" parent="." instance=ExtResource("4_7ys76")]
 position = Vector2(308, 131)
@@ -44,5 +44,5 @@ position = Vector2(441, 131)
 scale = Vector2(-3, 3)
 xVelocity = -50
 
-[node name="WheelDroid" parent="." instance=ExtResource("4_yqw2c")]
-position = Vector2(-22, 66)
+[node name="WheelDroid" parent="." instance=ExtResource("4_1opel")]
+position = Vector2(-2, -656)

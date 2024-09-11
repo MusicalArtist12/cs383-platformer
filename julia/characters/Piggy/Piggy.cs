@@ -36,14 +36,13 @@ public partial class Piggy : Character
 		Sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
     }
 
+
     public override void _PhysicsProcess(double delta)
 	{
+		GravityFallDamage(delta);
 		Vector2 velocity = Velocity;
-		
-		if (!IsOnFloor())
-		{
-			velocity += GetGravity() * (float)delta;
-		}
+
+
 		if (Input.IsActionJustPressed("MainCharacterJump") && IsOnFloor())
 		{
 			velocity.Y = JumpVelocity;

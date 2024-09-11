@@ -24,6 +24,9 @@ public partial class WheelDroid : CharacterBody2D
 	private float BulletSpeed = 1000.0f;
 	[Export]
 	private float ShotRecoil = 20.0f;
+	[Export]
+	private int BulletDamage = 10;
+
 
 	[ExportGroup("AI")]
 	[Export]
@@ -43,13 +46,20 @@ public partial class WheelDroid : CharacterBody2D
 	{
 		Health -= loss;
 		Sprite.Play("damaged");
+
+		GD.Print(Health);
+
+		if (Health <= 0) 
+		{
+			Sprite.Play("death");
+		}
 	}
 
     public override void _Ready()
     {
 		ChargeTimer = GetNode<Timer>("ChargeTimer");
 		Sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-
+		Health = MaxHealth;
 		Sprite.Play("idle");
 		ChargeTimer.SetPaused(false);
 		
@@ -86,7 +96,7 @@ public partial class WheelDroid : CharacterBody2D
 	{
 		return !(
 			Sprite.IsPlaying() && 
-			(Sprite.GetAnimation() == "shoot" || Sprite.GetAnimation() == "damaged")
+			(Sprite.GetAnimation() == "shoot" || Sprite.GetAnimation() == "damaged") || Sprite.GetAnimation() == "death"
 		);
 	}
 
@@ -164,6 +174,10 @@ public partial class WheelDroid : CharacterBody2D
 		{
 			Awake = false;
 		}
+		else if (Sprite.GetAnimation() == "death")
+		{
+			QueueFree();
+		}
 
 	}
 
@@ -175,6 +189,7 @@ public partial class WheelDroid : CharacterBody2D
 		).Instantiate();
 		bullet.Position = new Vector2(Position.X + (Sprite.FlipH ? -100 : 100), Position.Y);
 		bullet.Velocity = new Vector2(Sprite.FlipH ? -1.0f * BulletSpeed : BulletSpeed, 0.0f);
+		bullet.Damage = BulletDamage;
 		GetParent().AddChild(bullet);
 	}
 }

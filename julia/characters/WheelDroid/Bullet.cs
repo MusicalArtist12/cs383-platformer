@@ -5,6 +5,7 @@ using System;
 
 public partial class Bullet : CharacterBody2D
 {
+	public int Damage;
 	public const float HitBack = 200.0f;
 	public override void _PhysicsProcess(double delta)
 	{
@@ -18,7 +19,7 @@ public partial class Bullet : CharacterBody2D
 				Vector2 velocity = droid.Velocity;
 				velocity.X -= (HitBack * Math.Sign(droid.Position.X - Position.X));
 				droid.Velocity = velocity;
-				droid.TakeDamage(10);
+				droid.TakeDamage(Damage);
 			}
 			else if (collision.GetCollider() is Piggy)
 			{
@@ -26,7 +27,7 @@ public partial class Bullet : CharacterBody2D
 				Vector2 velocity = piggy.Velocity;
 				velocity.X += (HitBack * Math.Sign(piggy.Position.X - Position.X));
 				piggy.Velocity = velocity;
-				piggy.TakeDamage(10);
+				piggy.TakeDamage(Damage);
 			}
 
 			QueueFree();

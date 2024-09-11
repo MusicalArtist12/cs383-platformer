@@ -12,3 +12,4 @@
 - [Droid 1](https://penusbmic.itch.io/sci-fi-character-pack-6), [Droid 2](https://penusbmic.itch.io/sci-fi-character-pack-12): *Penusbmic*
     - `move with FX.png` modified to line up the sprites
 - [Wings](https://www.deviantart.com/tvngames/art/Wing-Sprites-FOR-323starlight-279590474): *tvngames*
+    - Modified to create a single sprite

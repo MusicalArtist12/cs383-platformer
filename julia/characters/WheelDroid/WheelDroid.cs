@@ -3,7 +3,7 @@
 using Godot;
 using System;
 
-public partial class WheelDroid : CharacterBody2D
+public partial class WheelDroid : Character
 {
 	private Timer ChargeTimer;
 	private AnimatedSprite2D Sprite;
@@ -35,14 +35,7 @@ public partial class WheelDroid : CharacterBody2D
 	private float ShotDistance = 400;	
 	private bool Awake = false;
 
-	[ExportGroup("Health")]
-	[Export]
-	public int MaxHealth = 100;
-	private int Health; 
-
-	public int GetHealth() { return Health; }
-
-	public void TakeDamage(int loss) 
+	public override void TakeDamage(int loss) 
 	{
 		Health -= loss;
 		Sprite.Play("damaged");
@@ -185,7 +178,7 @@ public partial class WheelDroid : CharacterBody2D
 	{	
 		Sprite.Play("shoot");
 		Bullet bullet = (Bullet)ResourceLoader.Load<PackedScene>(
-			"res:///julia/characters/WheelDroid/Bullet.tscn"
+			"res:///julia/interactables/Bullet/Bullet.tscn"
 		).Instantiate();
 		bullet.Position = new Vector2(Position.X + (Sprite.FlipH ? -100 : 100), Position.Y);
 		bullet.Velocity = new Vector2(Sprite.FlipH ? -1.0f * BulletSpeed : BulletSpeed, 0.0f);

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cykcsmepclkr1"]
 
-[ext_resource type="Script" path="res://julia/characters/WheelDroid/Bullet.cs" id="1_5fygj"]
+[ext_resource type="Script" path="res://julia/interactables/Bullet/Bullet.cs" id="1_5fygj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yipy3"]
 size = Vector2(10, 10)

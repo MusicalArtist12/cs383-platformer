@@ -3,7 +3,7 @@
 using Godot;
 using System;
 
-public partial class Piggy : CharacterBody2D
+public partial class Piggy : Character
 {
 	// References to commonly used child nodes
 	private AnimatedSprite2D Sprite;
@@ -22,16 +22,7 @@ public partial class Piggy : CharacterBody2D
 	private float JumpVelocity = -200.0f;
 	private float Speed;
 	
-	[ExportGroup("Health")]
-	[Export]
-	public int MaxHealth = 100;
-	[Export]
-	public float RedFlashTime = 0.5f;
-	private int Health;
-
-	public int GetHealth() { return Health; }
-
-	public void TakeDamage(int loss) 
+	public override void TakeDamage(int loss) 
 	{
 		Health -= loss;
 		Sprite.SpeedScale = 1.0f;

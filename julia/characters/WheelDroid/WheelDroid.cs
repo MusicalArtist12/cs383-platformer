@@ -6,6 +6,8 @@ using System;
 public partial class WheelDroid : Character
 {
 	private Timer ChargeTimer;
+	private Timer SleepTimer;
+	private Timer AwareTimer;
 	private AnimatedSprite2D Sprite;
 	private Piggy Enemy = null;
 
@@ -33,8 +35,29 @@ public partial class WheelDroid : Character
 	private float AwareDistance = 800;
 	[Export]
 	private float ShotDistance = 400;	
-	private bool Awake = false;
+	[Export]
 
+	private bool Awake = false;
+	private bool Aware = false;
+
+	public void WakeUp()
+	{
+		if (CanChangeAnimation())
+		{
+			Sprite.Play("wake");
+		}
+
+
+	}
+
+	public void Sleep()
+	{
+		if (CanChangeAnimation())
+		{
+			Sprite.Play("sleep");
+			Awake = false;
+		}
+	}
 
 	public override void TakeDamage(int loss) 
 	{
@@ -50,10 +73,13 @@ public partial class WheelDroid : Character
     public override void _Ready()
     {
 		ChargeTimer = GetNode<Timer>("ChargeTimer");
+		SleepTimer = GetNode<Timer>("SleepTimer");
+		AwareTimer = GetNode<Timer>("AwareTimer");
 		Sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		Health = MaxHealth;
-		Sprite.Play("idle");
+		Sprite.Play("sleepIdle");
 		ChargeTimer.SetPaused(false);
+		SleepTimer.SetPaused(false);
 		
 		// Bind to the first possible enemy. Assume singleplayer and that there will only be one Piggy.
 		foreach (Node2D child in GetParent().GetChildren()) {
@@ -88,7 +114,7 @@ public partial class WheelDroid : Character
 	{
 		return !(
 			Sprite.IsPlaying() && 
-			(Sprite.GetAnimation() == "shoot" || Sprite.GetAnimation() == "damaged") || Sprite.GetAnimation() == "death"
+			(Sprite.GetAnimation() == "shoot" || Sprite.GetAnimation() == "damaged" || Sprite.GetAnimation() == "death")
 		);
 	}
 
@@ -98,63 +124,49 @@ public partial class WheelDroid : Character
 		Vector2 velocity = Velocity;
 
 
-       	if (IsOnFloor() && Position.DistanceTo(Enemy.Position) < AwareDistance)
+		if (IsOnFloor() && Position.DistanceTo(Enemy.Position) < AwareDistance)
 		{
 			if (!Awake)
 			{
-				if (CanChangeAnimation())
-				{
-					Sprite.Play("wake");
-				}
+				WakeUp();
 			}
-			else 
-			{
-				SetDirection(Enemy.Position.X - Position.X);
 
-				if (Math.Abs(Enemy.Position.X - Position.X) >= ShotDistance && CanChangeAnimation()) 
-				{
-					velocity.X = Mathf.MoveToward(
-						velocity.X, 
-						Speed * Math.Sign(Enemy.Position.X - Position.X), 
-						Accel
-					);
-					if (CanChangeAnimation()) 
-					{
-						Sprite.Play("move");
-					}
-					
-					ChargeTimer.Stop();
-				}
-				else 
-				{
-					velocity.X = Mathf.MoveToward(velocity.X, 0, Decel);
-
-					if (CanChangeAnimation())
-					{	
-						Sprite.Play("charge");
-
-						if (ChargeTimer.IsStopped()) {
-							ChargeTimer.Start(ChargeTime);
-						}
-					}
-
-				}
-			}
 		}
-		else if (IsOnFloor() && Position.DistanceTo(Enemy.Position) > AwareDistance) 
-		{	
-			if (Awake)
-			{	
-				velocity.X = 0;
-				if (CanChangeAnimation())
-				{
-					Sprite.PlayBackwards("wake");
-				}
+
+		if (Awake && IsOnFloor() && Aware)
+		{
+			SetDirection(Enemy.Position.X - Position.X);
+
+			// Move towards enemy & Shoot when close enough
+			if (Math.Abs(Enemy.Position.X - Position.X) >= ShotDistance && CanChangeAnimation()) 
+			{
+				velocity.X = Mathf.MoveToward(
+					velocity.X, 
+					Speed * Math.Sign(Enemy.Position.X - Position.X), 
+					Accel
+				);
+				Sprite.Play("move");
+				
+				ChargeTimer.Stop();
 			}
 			else 
 			{
-				Sprite.Play("idle");
+				velocity.X = Mathf.MoveToward(velocity.X, 0, Decel);
+
+				if (CanChangeAnimation())
+				{	
+					Sprite.Play("charge");
+
+					if (ChargeTimer.IsStopped()) {
+						ChargeTimer.Start(ChargeTime);
+					}
+				}
 			}
+
+		}
+		else 
+		{
+			velocity.X = Mathf.MoveToward(velocity.X, 0, Decel);
 		}
 
 		Velocity = velocity;
@@ -163,13 +175,16 @@ public partial class WheelDroid : Character
 
 	public void OnAnimationFinish() 
 	{
-		if (Sprite.GetAnimation() == "wake" && !Awake) 
+		if (Sprite.GetAnimation() == "wake") 
 		{
+			Sprite.Play("wakeIdle");
+			AwareTimer.Start();
+			Aware = true;
 			Awake = true;
 		}
-		else if (Sprite.GetAnimation() == "wake" && Awake) 
+		else if (Sprite.GetAnimation() == "sleep") 
 		{
-			Awake = false;
+			Sprite.Play("sleepIdle");
 		}
 		else if (Sprite.GetAnimation() == "death")
 		{
@@ -178,6 +193,13 @@ public partial class WheelDroid : Character
 		else if (Sprite.GetAnimation() == "shoot")
 		{
 			Velocity = new Vector2(Velocity.X + ShotRecoil * Math.Sign(Position.X - Enemy.Position.X), Velocity.Y);
+		}
+		else if (Sprite.GetAnimation() == "damaged" && !Awake)
+		{
+			Sprite.Play("wakeIdle");
+			AwareTimer.Start();
+			Aware = true;
+			Awake = true;
 		}
 
 	}
@@ -192,5 +214,25 @@ public partial class WheelDroid : Character
 		bullet.Velocity = new Vector2(Sprite.FlipH ? -1.0f * BulletSpeed : BulletSpeed, 0.0f);
 		bullet.Damage = BulletDamage;
 		GetParent().AddChild(bullet);
+	}
+
+	public void OnSleepTimerTimeout()
+	{
+		Sleep();
+	}
+
+	public void OnAwareTimerTimeout()
+	{
+		AwareTimer.Stop();
+		Aware = false;
+		if (SleepTimer.IsStopped())
+		{
+			SleepTimer.Start();
+		}
+		if (CanChangeAnimation())
+		{
+			Sprite.Play("wakeIdle");
+		}
+
 	}
 }

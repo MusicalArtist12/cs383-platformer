@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://sdrrf2df0v3s"]
+[gd_scene load_steps=7 format=3 uid="uid://sdrrf2df0v3s"]
 
 [ext_resource type="Texture2D" uid="uid://xdxn1xlxvolr" path="res://assets/wings_modified.png" id="1_81hgy"]
+[ext_resource type="Script" path="res://julia/interactables/Wings/Wings.cs" id="2_nc4yr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_av0o4"]
 atlas = ExtResource("1_81hgy")
@@ -35,6 +36,9 @@ animations = [{
 }]
 
 [node name="Wings" type="AnimatedSprite2D"]
+show_behind_parent = true
+position = Vector2(0, -5)
 sprite_frames = SubResource("SpriteFrames_t3ajc")
-frame = 2
-frame_progress = 0.683069
+autoplay = "default"
+frame_progress = 0.980913
+script = ExtResource("2_nc4yr")

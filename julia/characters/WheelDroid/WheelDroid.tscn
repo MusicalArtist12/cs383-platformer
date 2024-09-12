@@ -25,13 +25,13 @@ region = Rect2(5, 52, 112, 26)
 atlas = ExtResource("2_jmfsa")
 region = Rect2(5, 78, 112, 26)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_m16wh"]
-atlas = ExtResource("3_y10d0")
-region = Rect2(0, 0, 117, 26)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_vh57x"]
 atlas = ExtResource("3_y10d0")
 region = Rect2(0, 26, 117, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m16wh"]
+atlas = ExtResource("3_y10d0")
+region = Rect2(0, 0, 117, 26)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c0b4x"]
 atlas = ExtResource("2_05fyq")
@@ -56,10 +56,6 @@ region = Rect2(0, 104, 117, 26)
 [sub_resource type="AtlasTexture" id="AtlasTexture_lxc0b"]
 atlas = ExtResource("2_05fyq")
 region = Rect2(0, 130, 117, 26)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_esi1w"]
-atlas = ExtResource("3_qmnjm")
-region = Rect2(0, 0, 117, 26)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hf01i"]
 atlas = ExtResource("4_j7eej")
@@ -109,25 +105,29 @@ region = Rect2(0, 52, 117, 26)
 atlas = ExtResource("6_1hi7m")
 region = Rect2(0, 78, 117, 26)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ifnmt"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5w1mh"]
 atlas = ExtResource("3_f1rlh")
-region = Rect2(0, 0, 117, 26)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3uuhe"]
-atlas = ExtResource("3_f1rlh")
-region = Rect2(0, 26, 117, 26)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_eqxbx"]
-atlas = ExtResource("3_f1rlh")
-region = Rect2(0, 52, 117, 26)
+region = Rect2(0, 104, 117, 26)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xs3x8"]
 atlas = ExtResource("3_f1rlh")
 region = Rect2(0, 78, 117, 26)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5w1mh"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_eqxbx"]
 atlas = ExtResource("3_f1rlh")
-region = Rect2(0, 104, 117, 26)
+region = Rect2(0, 52, 117, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3uuhe"]
+atlas = ExtResource("3_f1rlh")
+region = Rect2(0, 26, 117, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ifnmt"]
+atlas = ExtResource("3_f1rlh")
+region = Rect2(0, 0, 117, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_esi1w"]
+atlas = ExtResource("3_qmnjm")
+region = Rect2(0, 0, 117, 26)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hpclr"]
 animations = [{
@@ -150,10 +150,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_m16wh")
+"texture": SubResource("AtlasTexture_vh57x")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vh57x")
+"texture": SubResource("AtlasTexture_m16wh")
 }],
 "loop": false,
 "name": &"damaged",
@@ -180,14 +180,6 @@ animations = [{
 }],
 "loop": false,
 "name": &"death",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_esi1w")
-}],
-"loop": true,
-"name": &"idle",
 "speed": 5.0
 }, {
 "frames": [{
@@ -238,6 +230,34 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_5w1mh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xs3x8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eqxbx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3uuhe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifnmt")
+}],
+"loop": false,
+"name": &"sleep",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_esi1w")
+}],
+"loop": true,
+"name": &"sleepIdle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ifnmt")
 }, {
 "duration": 1.0,
@@ -255,6 +275,14 @@ animations = [{
 "loop": false,
 "name": &"wake",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5w1mh")
+}],
+"loop": true,
+"name": &"wakeIdle",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uk2l1"]
@@ -267,7 +295,7 @@ script = ExtResource("1_20oop")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(36, 0)
 sprite_frames = SubResource("SpriteFrames_hpclr")
-animation = &"damaged"
+animation = &"sleep"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
@@ -277,5 +305,15 @@ shape = SubResource("RectangleShape2D_uk2l1")
 process_callback = 0
 one_shot = true
 
+[node name="SleepTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="AwareTimer" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="OnAnimationFinish"]
 [connection signal="timeout" from="ChargeTimer" to="." method="OnChargeTimerTimeout"]
+[connection signal="timeout" from="SleepTimer" to="." method="OnSleepTimerTimeout"]
+[connection signal="timeout" from="AwareTimer" to="." method="OnAwareTimerTimeout"]

@@ -8,6 +8,7 @@ public partial class Piggy : Character
 	// References to commonly used child nodes
 	private AnimatedSprite2D Sprite;
 	private Timer RedFlashTimer;
+	private Sprite2D WingGun;
 
 	[ExportGroup("Movement")]
 	[Export]
@@ -21,12 +22,25 @@ public partial class Piggy : Character
 	[Export]
 	private float JumpVelocity = -200.0f;
 	private float Speed;
+
+	[ExportGroup("Weapon")]
+	[Export]
+	private float BulletSpeed = 1000.0f;
+	[Export]
+	private float ShotRecoil = 100.0f;
+	[Export]
+	private float ImpactPushSpeed = 100.0f;
+	[Export]
+	private int BulletDamage = 10;
+
+	private int XDirection = 1;
 	
 	public override void TakeDamage(int loss) 
 	{
 		Health -= loss;
 		Sprite.SpeedScale = 1.0f;
 		Sprite.Play("damaged");
+
 	}
 
     public override void _Ready()
@@ -34,7 +48,9 @@ public partial class Piggy : Character
 		Speed = WalkSpeed;
 		Health = MaxHealth;
 		Sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		WingGun = GetNode<Sprite2D>("WingGun");
     }
+
 
     public override void _PhysicsProcess(double delta)
 	{
@@ -56,6 +72,22 @@ public partial class Piggy : Character
 			Speed = WalkSpeed;
 		}
 		
+		Vector2 MousePosition = GetLocalMousePosition();
+		WingGun.Rotation = MousePosition.Angle();
+
+		if (MousePosition.X < 0)
+		{
+			Scale = new Vector2(-Mathf.Abs(Scale.X), Scale.Y);
+			XDirection = XDirection * -1;
+		}
+
+		if (Input.IsActionJustPressed("MainCharacterShoot"))
+		{
+			ShootWeapon(MousePosition.Normalized());
+			velocity.X -= XDirection * ShotRecoil;
+
+		}
+
 		Vector2 direction = Input.GetVector(
 			"MainCharacterLeft", 
 			"MainCharacterRight", 
@@ -66,7 +98,7 @@ public partial class Piggy : Character
 		{
 			if (direction != Vector2.Zero)
 			{
-				Sprite.FlipH = direction.X < 0;
+				
 				velocity.X = Mathf.MoveToward(velocity.X, direction.X * Speed, Accel);
 			}
 			else 
@@ -81,7 +113,6 @@ public partial class Piggy : Character
 					Sprite.Play("walk");
 				}
 				
-				
 				Sprite.SpeedScale = Mathf.Abs(velocity.X) / WalkSpeed;
 			}
 			else
@@ -90,13 +121,28 @@ public partial class Piggy : Character
 				if (!(Sprite.IsPlaying() && Sprite.GetAnimation() == "damaged")) 
 				{
 					Sprite.Play("idle");
-				}
-				
+				}	
 			}
 		}
 		
 		Velocity = velocity;
 		MoveAndSlide();
+	}
+
+	void ShootWeapon(Vector2 Direction)
+	{
+		WingBullet bullet = (WingBullet)ResourceLoader.Load<PackedScene>(
+			"res:///julia/interactables/WingBullet/WingBullet.tscn"
+		).Instantiate();
+		
+		Vector2 AbsDirection = new Vector2(Direction.X * XDirection, Direction.Y);
+
+		bullet.Position = new Vector2(Position.X + (125.0f * AbsDirection.X), Position.Y + (200.0f * AbsDirection.Y));
+		bullet.Rotation = AbsDirection.Angle();
+		bullet.Velocity = BulletSpeed * AbsDirection;
+		bullet.ImpactPushSpeed = ImpactPushSpeed;
+		bullet.BulletDamage = BulletDamage;
+		GetParent().AddChild(bullet);
 	}
 
 }

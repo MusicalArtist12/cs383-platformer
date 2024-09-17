@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="cs383-platformer"
+
 run/main_scene="res://Clayton/Main menu/main_menu.tscn"
 config/features=PackedStringArray("4.4", "C#", "Mobile")
 config/icon="res://icon.svg"
@@ -73,3 +73,4 @@ pause={
 
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
+environment/defaults/default_clear_color=Color(8.42288e-08, 0.254528, 0.279936, 1)

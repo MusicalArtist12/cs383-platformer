@@ -1,26 +1,36 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvrpjueep3mwg"]
+[gd_scene load_steps=5 format=3 uid="uid://bvrpjueep3mwg"]
 
 [ext_resource type="Script" path="res://julia/characters/Piggy/Piggy.cs" id="1_p0k7k"]
 [ext_resource type="SpriteFrames" uid="uid://bxrx6vstw6vxj" path="res://assets/piggy_sprite_frame.tres" id="2_ird1v"]
+[ext_resource type="Texture2D" uid="uid://b2b7twieuxml8" path="res://assets/WingGun/Blunderbuss side.png" id="3_53410"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3fnjw"]
-size = Vector2(18, 18)
+size = Vector2(18, 20)
 
 [node name="Piggy" type="CharacterBody2D"]
-scale = Vector2(3, 3)
+scale = Vector2(2.5, 2.5)
 script = ExtResource("1_p0k7k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_3fnjw")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(3, 3)
-sprite_frames = ExtResource("2_ird1v")
-animation = &"walk"
-
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(0, -200)
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
-drag_vertical_enabled = true
+drag_left_margin = 0.5
+drag_top_margin = 0.0
+drag_right_margin = 0.5
+drag_bottom_margin = 0.0
+editor_draw_drag_margin = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("2_ird1v")
+animation = &"idle"
+
+[node name="WingGun" type="Sprite2D" parent="."]
+position = Vector2(3.2, 17.6)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_53410")

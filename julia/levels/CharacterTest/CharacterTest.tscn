@@ -1,4 +1,5 @@
-[gd_scene load_steps=6 format=3 uid="uid://cwhq4at1bx7jq"]
+[gd_scene load_steps=7 format=3 uid="uid://cwhq4at1bx7jq"]
+
 
 [ext_resource type="Texture2D" uid="uid://c2i4fthnbcibd" path="res://assets/checkered_pattern.png" id="2_e31kk"]
 [ext_resource type="PackedScene" uid="uid://bvrpjueep3mwg" path="res://julia/characters/Piggy/Piggy.tscn" id="3_fm6vm"]
@@ -36,6 +37,7 @@ shape = SubResource("RectangleShape2D_mub4v")
 [node name="Piggy" parent="." instance=ExtResource("3_fm6vm")]
 position = Vector2(-263, 88.9999)
 
+
 [node name="Launcher" parent="." instance=ExtResource("4_7ys76")]
 position = Vector2(308, 131)
 
@@ -46,3 +48,11 @@ xVelocity = -50
 
 [node name="WheelDroid" parent="." instance=ExtResource("4_dkwyu")]
 position = Vector2(124, 82)
+
+[node name="Piggy" parent="." instance=ExtResource("4_i67k2")]
+position = Vector2(-312, -6)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PausedMenu" parent="CanvasLayer" instance=ExtResource("5_y83un")]
+

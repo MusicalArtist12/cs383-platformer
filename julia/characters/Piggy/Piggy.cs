@@ -137,7 +137,7 @@ public partial class Piggy : Character
 		
 		Vector2 AbsDirection = new Vector2(Direction.X * XDirection, Direction.Y);
 
-		bullet.Position = new Vector2(Position.X + (125.0f * AbsDirection.X), Position.Y + (200.0f * AbsDirection.Y));
+		bullet.Position = new Vector2(Position.X + (300.0f * AbsDirection.X), Position.Y + (300.0f * AbsDirection.Y));
 		bullet.Rotation = AbsDirection.Angle();
 		bullet.Velocity = BulletSpeed * AbsDirection;
 		bullet.ImpactPushSpeed = ImpactPushSpeed;

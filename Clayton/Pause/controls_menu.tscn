@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dsmldwk7v1vah"]
 
-[ext_resource type="FontFile" uid="uid://dugsbx4ppato1" path="res://Clayton/Daydream.ttf" id="1_48ma1"]
+[ext_resource type="FontFile" uid="uid://d3qi3ob7t6gkc" path="res://Clayton/Daydream.ttf" id="1_48ma1"]
 [ext_resource type="Script" path="res://Clayton/Pause/controls_menu.gd" id="1_m3q75"]
 
 [node name="ControlsMenu" type="Control"]
@@ -57,6 +57,15 @@ theme_override_constants/outline_size = 1
 theme_override_fonts/font = ExtResource("1_48ma1")
 theme_override_font_sizes/font_size = 32
 text = "Use \"SHIFT\" to move faster"
+horizontal_alignment = 1
+
+[node name="Control5" type="Label" parent="GridContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("1_48ma1")
+theme_override_font_sizes/font_size = 32
+text = "Aim With Mouse, Click to SHoot"
 horizontal_alignment = 1
 
 [node name="Control4" type="Label" parent="GridContainer"]

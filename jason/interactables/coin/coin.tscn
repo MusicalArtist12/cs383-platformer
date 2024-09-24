@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=3 uid="uid://pxtxu2td3pe5"]
 
 [ext_resource type="Script" path="res://jason/interactables/coin/coin.gd" id="1_uk33o"]
-[ext_resource type="Texture2D" uid="uid://begl20in2ueh" path="res://assets/coin1_16x16.png" id="2_ct80y"]
+[ext_resource type="Texture2D" uid="uid://4s58ox7xty1n" path="res://assets/coin1_16x16.png" id="2_ct80y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w3ep0"]
 size = Vector2(14, 16)

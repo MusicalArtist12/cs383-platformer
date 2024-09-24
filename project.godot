@@ -66,6 +66,12 @@ pause={
 ]
 }
 
+[layer_names]
+
+2d_render/layer_1="Entities"
+2d_render/layer_2="Coins"
+2d_render/layer_3="Bullets"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

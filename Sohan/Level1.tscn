@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://cq7ve0f4b6cen"]
+[gd_scene load_steps=19 format=4 uid="uid://cq7ve0f4b6cen"]
 
 [ext_resource type="Texture2D" uid="uid://us51xfk65hm1" path="res://Sohan/Assets/Decorations/Tileset/Mossy - TileSet.png" id="1_s5in1"]
 [ext_resource type="Texture2D" uid="uid://nlk6iua3v8a3" path="res://Sohan/Assets/Decorations/Tileset/Mossy - BackgroundDecoration.png" id="2_0rk40"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dv6xc3f08f1ei" path="res://Sohan/Assets/Decorations/Tileset/Mossy - Decorations&Hazards.png" id="5_kdqho"]
 [ext_resource type="PackedScene" uid="uid://bvrpjueep3mwg" path="res://julia/characters/Piggy/Piggy.tscn" id="6_wwek1"]
 [ext_resource type="PackedScene" uid="uid://2wspuye35oeg" path="res://julia/characters/WheelDroid/WheelDroid.tscn" id="7_c32dy"]
+[ext_resource type="PackedScene" uid="uid://pxtxu2td3pe5" path="res://jason/interactables/coin/coin.tscn" id="8_rqf76"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ue5em"]
 texture = ExtResource("2_0rk40")
@@ -378,13 +379,13 @@ tile_set = SubResource("TileSet_kn5ny")
 [node name="Critters" type="Node2D" parent="."]
 
 [node name="WheelDroid" parent="Critters" instance=ExtResource("7_c32dy")]
-position = Vector2(64, 336)
+position = Vector2(424, 360)
 
 [node name="Piggy" parent="Critters" instance=ExtResource("6_wwek1")]
-position = Vector2(-872, 352)
+position = Vector2(-592, 368)
 
-[node name="WheelDroid2" parent="Critters" instance=ExtResource("7_c32dy")]
-position = Vector2(496, 312)
+[node name="Coins" type="Node2D" parent="."]
+z_index = 1
 
-[node name="WheelDroid3" parent="Critters" instance=ExtResource("7_c32dy")]
-position = Vector2(1184, 336)
+[node name="Coin" parent="Coins" instance=ExtResource("8_rqf76")]
+position = Vector2(88, 368)

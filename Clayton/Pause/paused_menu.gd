@@ -22,7 +22,7 @@ func _on_resume_btn_pressed() -> void:
 
 #Functionality for settings button
 func _on_settings_btn_pressed() -> void:
-	pass # Replace with function body.
+	get_tree().change_scene_to_file("res://Clayton/Pause/controls_menu.tscn")
 
 #Functionality for quit button
 func _on_quit_btn_pressed() -> void:

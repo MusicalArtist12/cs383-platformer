@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b3fivdkfeiiwn"]
 
 [ext_resource type="Script" path="res://Clayton/Pause/paused_menu.gd" id="1_rcnpn"]
-[ext_resource type="FontFile" uid="uid://d3qi3ob7t6gkc" path="res://Clayton/Daydream.ttf" id="2_ja3x2"]
+[ext_resource type="FontFile" uid="uid://dugsbx4ppato1" path="res://Clayton/Daydream.ttf" id="2_ja3x2"]
 
 [node name="PausedMenu" type="Control"]
 process_mode = 3
@@ -50,10 +50,10 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_ja3x2")
 text = "Resume"
 
-[node name="SettingsBtn" type="Button" parent="GridContainer"]
+[node name="ControlsBtn" type="Button" parent="GridContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_ja3x2")
-text = "Settings"
+text = "Controls"
 
 [node name="QuitBtn" type="Button" parent="GridContainer"]
 layout_mode = 2
@@ -61,5 +61,5 @@ theme_override_fonts/font = ExtResource("2_ja3x2")
 text = "Quit"
 
 [connection signal="pressed" from="GridContainer/ResumeBtn" to="." method="_on_resume_btn_pressed"]
-[connection signal="pressed" from="GridContainer/SettingsBtn" to="." method="_on_settings_btn_pressed"]
+[connection signal="pressed" from="GridContainer/ControlsBtn" to="." method="_on_settings_btn_pressed"]
 [connection signal="pressed" from="GridContainer/QuitBtn" to="." method="_on_quit_btn_pressed"]

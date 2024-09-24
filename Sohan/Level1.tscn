@@ -425,13 +425,13 @@ columns = 2
 [node name="Label" type="Label" parent="CanvasLayer/HFlowContainer/Health"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("9_fqv1s")
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 20
 text = "Health: "
 
 [node name="Score" type="Label" parent="CanvasLayer/HFlowContainer/Health"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("9_fqv1s")
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 20
 text = "0
 "
 script = ExtResource("11_1tvwy")
@@ -443,13 +443,13 @@ columns = 2
 [node name="CPoints" type="Label" parent="CanvasLayer/HFlowContainer/Score"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("9_fqv1s")
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 20
 text = "Coin Points: "
 
 [node name="Score" type="Label" parent="CanvasLayer/HFlowContainer/Score"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("9_fqv1s")
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 20
 text = "0
 "
 script = SubResource("GDScript_idvcg")

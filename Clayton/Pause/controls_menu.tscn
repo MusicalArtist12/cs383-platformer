@@ -1,0 +1,128 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsmldwk7v1vah"]
+
+[ext_resource type="FontFile" uid="uid://d3qi3ob7t6gkc" path="res://Clayton/Daydream.ttf" id="1_48ma1"]
+[ext_resource type="Script" path="res://Clayton/Pause/controls_menu.gd" id="1_m3q75"]
+
+[node name="ControlsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m3q75")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.658824, 1, 1)
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/v_separation = 65
+
+[node name="Control1" type="Label" parent="GridContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("1_48ma1")
+theme_override_font_sizes/font_size = 32
+text = "Use \"A\" to move right"
+horizontal_alignment = 1
+
+[node name="Control2" type="Label" parent="GridContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("1_48ma1")
+theme_override_font_sizes/font_size = 32
+text = "Use \"D\" to move left"
+horizontal_alignment = 1
+
+[node name="Control3" type="Label" parent="GridContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("1_48ma1")
+theme_override_font_sizes/font_size = 32
+text = "Use \"SHIFT\" to move faster"
+horizontal_alignment = 1
+
+[node name="Control5" type="Label" parent="GridContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("1_48ma1")
+theme_override_font_sizes/font_size = 32
+text = "Aim With Mouse, Click to SHoot"
+horizontal_alignment = 1
+
+[node name="Control4" type="Label" parent="GridContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("1_48ma1")
+theme_override_font_sizes/font_size = 32
+text = "Note: Upon exit from screen, 
+press escape to resume"
+horizontal_alignment = 1
+
+[node name="GridContainer2" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -422.0
+offset_right = 422.0
+offset_bottom = 132.0
+grow_horizontal = 2
+theme_override_constants/v_separation = 100
+
+[node name="Separator" type="Control" parent="GridContainer2"]
+layout_mode = 2
+
+[node name="Controls" type="Label" parent="GridContainer2"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 12
+theme_override_constants/shadow_offset_y = 12
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("1_48ma1")
+theme_override_font_sizes/font_size = 100
+text = "Controls"
+
+[node name="GridContainer3" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/v_separation = 100
+
+[node name="ExitBtn" type="Button" parent="GridContainer3"]
+process_mode = 2
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_48ma1")
+theme_override_font_sizes/font_size = 32
+text = "Exit"
+
+[node name="Separator2" type="Control" parent="GridContainer3"]
+layout_mode = 2

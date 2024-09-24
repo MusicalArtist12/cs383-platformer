@@ -50,10 +50,10 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_ja3x2")
 text = "Resume"
 
-[node name="SettingsBtn" type="Button" parent="GridContainer"]
+[node name="ControlsBtn" type="Button" parent="GridContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_ja3x2")
-text = "Settings"
+text = "Controls"
 
 [node name="QuitBtn" type="Button" parent="GridContainer"]
 layout_mode = 2
@@ -61,5 +61,5 @@ theme_override_fonts/font = ExtResource("2_ja3x2")
 text = "Quit"
 
 [connection signal="pressed" from="GridContainer/ResumeBtn" to="." method="_on_resume_btn_pressed"]
-[connection signal="pressed" from="GridContainer/SettingsBtn" to="." method="_on_settings_btn_pressed"]
+[connection signal="pressed" from="GridContainer/ControlsBtn" to="." method="_on_settings_btn_pressed"]
 [connection signal="pressed" from="GridContainer/QuitBtn" to="." method="_on_quit_btn_pressed"]

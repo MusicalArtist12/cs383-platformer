@@ -40,8 +40,7 @@ public partial class Piggy : Character
 		Health -= loss;
 		Sprite.SpeedScale = 1.0f;
 		Sprite.Play("damaged");
-
-	}
+	}	
 
     public override void _Ready()
     {	

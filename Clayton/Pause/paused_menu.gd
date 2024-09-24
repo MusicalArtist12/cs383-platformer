@@ -4,6 +4,7 @@ extends Control
 var _is_paused:bool = false:   
 	set = set_paused
 	
+
 #Detects whether the button is pressed to pause the game	
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
@@ -19,10 +20,11 @@ func set_paused(value:bool) -> void:
 #Functionality for resume button
 func _on_resume_btn_pressed() -> void:
 	_is_paused = false
-
+		
 #Functionality for settings button
 func _on_settings_btn_pressed() -> void:
-	pass # Replace with function body.
+	add_child(preload("res://Clayton/Pause/controls_menu.tscn").instantiate());
+	# get_tree().change_scene_to_file("res://Clayton/Pause/controls_menu.tscn")
 
 #Functionality for quit button
 func _on_quit_btn_pressed() -> void:

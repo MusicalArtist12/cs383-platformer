@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://cq7ve0f4b6cen"]
+[gd_scene load_steps=23 format=4 uid="uid://cq7ve0f4b6cen"]
 
 [ext_resource type="Texture2D" uid="uid://us51xfk65hm1" path="res://Sohan/Assets/Decorations/Tileset/Mossy - TileSet.png" id="1_s5in1"]
 [ext_resource type="Texture2D" uid="uid://nlk6iua3v8a3" path="res://Sohan/Assets/Decorations/Tileset/Mossy - BackgroundDecoration.png" id="2_0rk40"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://b3fivdkfeiiwn" path="res://Clayton/Pause/paused_menu.tscn" id="8_kbkds"]
 [ext_resource type="PackedScene" uid="uid://pxtxu2td3pe5" path="res://jason/interactables/coin/coin.tscn" id="9_51v8n"]
 [ext_resource type="FontFile" uid="uid://d3qi3ob7t6gkc" path="res://Clayton/Daydream.ttf" id="9_fqv1s"]
+[ext_resource type="Script" path="res://Clayton/HUD/ScoreCounter.cs" id="11_1tvwy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ue5em"]
 texture = ExtResource("2_0rk40")
@@ -411,24 +412,46 @@ position = Vector2(-40, 400)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="PausedMenu" parent="CanvasLayer" instance=ExtResource("8_kbkds")]
+[node name="HFlowContainer" type="VFlowContainer" parent="CanvasLayer"]
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 1282.0
+offset_bottom = 490.0
 
-[node name="CPoints" type="Label" parent="CanvasLayer"]
-offset_left = 72.0
-offset_top = 48.0
-offset_right = 713.0
-offset_bottom = 148.0
+[node name="Health" type="GridContainer" parent="CanvasLayer/HFlowContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/HFlowContainer/Health"]
+layout_mode = 2
 theme_override_fonts/font = ExtResource("9_fqv1s")
 theme_override_font_sizes/font_size = 60
-text = "Coin Points:"
+text = "Health: "
 
-[node name="Score" type="Label" parent="CanvasLayer"]
-offset_left = 728.0
-offset_top = 48.0
-offset_right = 790.0
-offset_bottom = 148.0
+[node name="Score" type="Label" parent="CanvasLayer/HFlowContainer/Health"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_fqv1s")
+theme_override_font_sizes/font_size = 60
+text = "0
+"
+script = ExtResource("11_1tvwy")
+
+[node name="Score" type="GridContainer" parent="CanvasLayer/HFlowContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="CPoints" type="Label" parent="CanvasLayer/HFlowContainer/Score"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_fqv1s")
+theme_override_font_sizes/font_size = 60
+text = "Coin Points: "
+
+[node name="Score" type="Label" parent="CanvasLayer/HFlowContainer/Score"]
+layout_mode = 2
 theme_override_fonts/font = ExtResource("9_fqv1s")
 theme_override_font_sizes/font_size = 60
 text = "0
 "
 script = SubResource("GDScript_idvcg")
+
+[node name="PausedMenu" parent="CanvasLayer" instance=ExtResource("8_kbkds")]

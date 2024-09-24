@@ -5,6 +5,8 @@ extends Control
 @onready var exit_btn: Button = $GridContainer3/ExitBtn as Button
 
 
+
+
 func _ready():
 	exit_btn.button_down.connect(on_exit_pressed)
 	
@@ -14,5 +16,5 @@ func _ready():
 
 func on_exit_pressed() -> void:
 	
-	get_tree().change_scene_to_file("res://Sohan/Level1.tscn")
+	get_tree().change_scene_to_packed(Global.load_level)
 	

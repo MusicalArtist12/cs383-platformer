@@ -123,7 +123,6 @@ animations = [{
 script = ExtResource("1_uk33o")
 
 [node name="Area2D" type="Area2D" parent="."]
-
 collision_layer = 2
 collision_mask = 2
 
@@ -131,7 +130,6 @@ collision_mask = 2
 shape = SubResource("RectangleShape2D_w3ep0")
 
 [node name="Coinimation" type="AnimatedSprite2D" parent="."]
-
 scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_cmgdy")
 autoplay = "default"

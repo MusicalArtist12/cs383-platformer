@@ -389,3 +389,4 @@ z_index = 1
 
 [node name="Coin" parent="Coins" instance=ExtResource("8_rqf76")]
 position = Vector2(88, 368)
+value = 1

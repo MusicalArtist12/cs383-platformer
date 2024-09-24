@@ -14,5 +14,5 @@ func _ready():
 
 func on_exit_pressed() -> void:
 	
-	get_tree().change_scene_to_file("res://julia/levels/CharacterTest/CharacterTest.tscn")
+	get_tree().change_scene_to_file("res://Sohan/Level1.tscn")
 	

@@ -5,7 +5,7 @@ extends Control
 
 @onready var start_button = $MarginContainer/HBoxContainer/VBoxContainer/StartBtn as Button		#defines start button as button
 @onready var quit_button =$MarginContainer/HBoxContainer/VBoxContainer/QuitBtn as Button		#defines quit button as button
-@onready var start_level = preload("res://julia/levels/CharacterTest/CharacterTest.tscn") as PackedScene		#defines game as a packed scene used in start_pressed function
+#@onready var start_level = preload("res://julia/levels/CharacterTest/CharacterTest.tscn") as PackedScene		#defines game as a packed scene used in start_pressed function
 
 
 func _ready():
@@ -14,7 +14,7 @@ func _ready():
 	
 	
 func on_start_pressed() -> void:
-	get_tree().change_scene_to_packed(start_level)		#starts game
+	get_tree().change_scene_to_file("res://Sohan/Level1.tscn")		#starts game
 	
 func on_quit_pressed() -> void:
 	get_tree().quit()		#quits game

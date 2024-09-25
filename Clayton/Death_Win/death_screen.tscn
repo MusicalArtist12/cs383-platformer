@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://bmwu2wfcnufjk"]
 
-[ext_resource type="FontFile" uid="uid://d3qi3ob7t6gkc" path="res://Clayton/Daydream.ttf" id="1_hphbj"]
+[ext_resource type="FontFile" uid="uid://lhcvoc440dl7" path="res://Clayton/Daydream.ttf" id="1_hphbj"]
 [ext_resource type="Script" path="res://Clayton/Death_Win/death_screen.gd" id="1_saegs"]
-[ext_resource type="Texture2D" uid="uid://3s56hosj318n" path="res://Clayton/Death_Win/Assets/pixelart_skull.png" id="2_fcgui"]
+[ext_resource type="Texture2D" uid="uid://dreuj1di1xu05" path="res://Clayton/Death_Win/Assets/pixelart_skull.png" id="2_fcgui"]
 
 [node name="Death Screen" type="Control"]
 layout_mode = 3

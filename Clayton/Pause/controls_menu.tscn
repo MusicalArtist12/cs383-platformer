@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dsmldwk7v1vah"]
 
-[ext_resource type="FontFile" uid="uid://lhcvoc440dl7" path="res://Clayton/Daydream.ttf" id="1_48ma1"]
+[ext_resource type="FontFile" uid="uid://d3qi3ob7t6gkc" path="res://Clayton/Daydream.ttf" id="1_48ma1"]
 [ext_resource type="Script" path="res://Clayton/Pause/controls_menu.gd" id="1_m3q75"]
 
 [node name="ControlsMenu" type="Control"]

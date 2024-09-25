@@ -11,21 +11,24 @@ public partial class WheelDroid : Character
 	private AnimatedSprite2D Sprite;
 	private Piggy Enemy = null;
 
+	// all units: distance: cm, time: s
 	[ExportGroup("Movement")]
 	[Export]
-	private float Accel = 5.0f;
+	private float Accel = 25.0f;
 	[Export]
-	private float Decel = 5.0f;
+	private float Decel = 50.0f;
 	[Export]
-	private float Speed = 150.0f;
+	private float Speed = 250.0f;
 
 	[ExportGroup("Weapon")]
 	[Export]
 	private float ChargeTime = 1.0f;
 	[Export]
-	private float BulletSpeed = 1000.0f;
+	private float BulletSpeed = 980.0f;
 	[Export]
-	private float ShotRecoil = 20.0f;
+	private float ShotRecoil = 50.0f;
+	[Export]
+	private float ImpactPushSpeed = 100.0f;
 	[Export]
 	private int BulletDamage = 10;
 
@@ -169,6 +172,7 @@ public partial class WheelDroid : Character
 			velocity.X = Mathf.MoveToward(velocity.X, 0, Decel);
 		}
 
+		
 		Velocity = velocity;
 		MoveAndSlide();
 	}
@@ -210,9 +214,11 @@ public partial class WheelDroid : Character
 		Bullet bullet = (Bullet)ResourceLoader.Load<PackedScene>(
 			"res:///julia/interactables/Bullet/Bullet.tscn"
 		).Instantiate();
-		bullet.Position = new Vector2(Position.X + (Sprite.FlipH ? -100 : 100), Position.Y);
+		bullet.Position = new Vector2(Position.X, Position.Y + 8);
 		bullet.Velocity = new Vector2(Sprite.FlipH ? -1.0f * BulletSpeed : BulletSpeed, 0.0f);
 		bullet.Damage = BulletDamage;
+		bullet.ImpactPushSpeed = ImpactPushSpeed;
+		bullet.AddCollisionExceptionWith(this);
 		GetParent().AddChild(bullet);
 	}
 

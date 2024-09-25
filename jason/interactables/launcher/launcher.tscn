@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://0ofkuv0avpt4"]
 
 [ext_resource type="Script" path="res://jason/interactables/launcher/launcher.gd" id="1_44vif"]
-[ext_resource type="Texture2D" uid="uid://brd2wagvau3vi" path="res://assets/Launcher_SpriteSheet.png" id="2_e5713"]
+[ext_resource type="Texture2D" path="res://assets/Launcher_SpriteSheet.png" id="2_e5713"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rbwd6"]
 size = Vector2(31, 13)

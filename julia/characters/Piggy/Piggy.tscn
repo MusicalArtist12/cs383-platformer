@@ -8,32 +8,35 @@
 size = Vector2(18, 20)
 
 [node name="Piggy" type="CharacterBody2D"]
-scale = Vector2(3, 3)
+scale = Vector2(5, 5)
 collision_layer = 7
 collision_mask = 7
 script = ExtResource("1_p0k7k")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_ird1v")
+animation = &"idle"
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_3fnjw")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(0, -200)
-zoom = Vector2(0.5, 0.5)
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
-drag_left_margin = 0.5
+drag_left_margin = 0.25
 drag_top_margin = 0.0
-drag_right_margin = 0.5
+drag_right_margin = 0.25
 drag_bottom_margin = 0.0
 editor_draw_drag_margin = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(3, 3)
-sprite_frames = ExtResource("2_ird1v")
-animation = &"idle"
-
 [node name="WingGun" type="Sprite2D" parent="."]
-position = Vector2(3.2, 17.6)
-scale = Vector2(1.5, 1.5)
+position = Vector2(0, 4)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_53410")
+
+[node name="GunReloadTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="timeout" from="GunReloadTimer" to="." method="OnGunReloadTimerTimeout"]

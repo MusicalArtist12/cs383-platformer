@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://cb8qpgomrmtkg"]
 
 [ext_resource type="Script" path="res://Clayton/Death_Win/win_screen.gd" id="1_qgaqe"]
-[ext_resource type="FontFile" uid="uid://lhcvoc440dl7" path="res://Clayton/Daydream.ttf" id="2_3b5a2"]
-[ext_resource type="Texture2D" uid="uid://dc2i3fvn07vt0" path="res://Clayton/Death_Win/Assets/Balloon1.png" id="3_smgjo"]
-[ext_resource type="Texture2D" uid="uid://dvwb8lfsoj64c" path="res://Clayton/Death_Win/Assets/Balloon2.png" id="4_lahb1"]
-[ext_resource type="Texture2D" uid="uid://bkl2irk2t75ng" path="res://Clayton/Death_Win/Assets/confetti.png" id="5_dgw3t"]
+[ext_resource type="FontFile" uid="uid://d3qi3ob7t6gkc" path="res://Clayton/Daydream.ttf" id="2_3b5a2"]
+[ext_resource type="Texture2D" uid="uid://clobidw5kmh05" path="res://Clayton/Death_Win/Assets/Balloon1.png" id="3_smgjo"]
+[ext_resource type="Texture2D" uid="uid://6c1xttt0kvsp" path="res://Clayton/Death_Win/Assets/Balloon2.png" id="4_lahb1"]
+[ext_resource type="Texture2D" uid="uid://btd8k4aw46sa5" path="res://Clayton/Death_Win/Assets/confetti.png" id="5_dgw3t"]
 
 [node name="Win_screen" type="Control"]
 layout_mode = 3

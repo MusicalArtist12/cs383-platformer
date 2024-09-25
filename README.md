@@ -13,3 +13,4 @@
 	- `move with FX.png` modified to line up the sprites
 - [Wings](https://www.deviantart.com/tvngames/art/Wing-Sprites-FOR-323starlight-279590474): *tvngames*
 	- Modified to create a single sprite
+- [Mossy Cavern](https://maaot.itch.io/mossy-cavern): *maaot*

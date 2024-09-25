@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://4s58ox7xty1n" path="res://assets/coin1_16x16.png" id="2_ct80y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w3ep0"]
-size = Vector2(14, 16)
+size = Vector2(14, 14)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8cmh3"]
 atlas = ExtResource("2_ct80y")
@@ -120,6 +120,7 @@ animations = [{
 }]
 
 [node name="Coin" type="Node2D"]
+scale = Vector2(5, 5)
 script = ExtResource("1_uk33o")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -130,7 +131,6 @@ collision_mask = 2
 shape = SubResource("RectangleShape2D_w3ep0")
 
 [node name="Coinimation" type="AnimatedSprite2D" parent="."]
-scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_cmgdy")
 autoplay = "default"
 frame_progress = 0.892108

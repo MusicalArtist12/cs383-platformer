@@ -7,39 +7,52 @@ public partial class Piggy : Character
 {
 	// References to commonly used child nodes
 	private AnimatedSprite2D Sprite;
-	private Timer RedFlashTimer;
+	private Timer GunReloadTimer;
+
 	private Sprite2D WingGun;
 
+	[Signal]
+    public delegate void PiggyKilledEventHandler();
+
+	// all units: distance: cm, time: s
 	[ExportGroup("Movement")]
 	[Export]
-	private float Accel = 20.0f; // The rate at which the character increases speed
+	private float Accel = 10.0f; // The rate at which the character increases speed
 	[Export]
-	private float Decel = 10.0f; // The rate at which the character stops moving
+	private float Decel = 50.0f; // The rate at which the character stops moving
 	[Export]
-	private float WalkSpeed = 200.0f; 
+	private float WalkSpeed = 250.0f; 
 	[Export]
-	private float SprintSpeed = 400.0f;
+	private float SprintSpeed = 500.0f;
 	[Export]
-	private float JumpVelocity = -200.0f;
+	private float JumpVelocity = -100.0f;
 	private float Speed;
+	
+
 
 	[ExportGroup("Weapon")]
 	[Export]
-	private float BulletSpeed = 1000.0f;
+	private float BulletSpeed = 980.0f;
 	[Export]
-	private float ShotRecoil = 100.0f;
+	private float ShotRecoil = 50.0f;
 	[Export]
 	private float ImpactPushSpeed = 100.0f;
 	[Export]
 	private int BulletDamage = 10;
 
 	private int XDirection = 1;
+	private bool reloading = false;
 	
 	public override void TakeDamage(int loss) 
 	{
 		Health -= loss;
 		Sprite.SpeedScale = 1.0f;
 		Sprite.Play("damaged");
+
+		if (Health <= 0)
+		{
+			EmitSignal(SignalName.PiggyKilled);
+		}
 	}	
 
     public override void _Ready()
@@ -48,6 +61,7 @@ public partial class Piggy : Character
 		Health = MaxHealth;
 		Sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		WingGun = GetNode<Sprite2D>("WingGun");
+		GunReloadTimer = GetNode<Timer>("GunReloadTimer");
     }
 
 
@@ -130,18 +144,28 @@ public partial class Piggy : Character
 
 	void ShootWeapon(Vector2 Direction)
 	{
+		if (reloading) {
+			return;
+		}
 		WingBullet bullet = (WingBullet)ResourceLoader.Load<PackedScene>(
 			"res:///julia/interactables/WingBullet/WingBullet.tscn"
 		).Instantiate();
 		
 		Vector2 AbsDirection = new Vector2(Direction.X * XDirection, Direction.Y);
 
-		bullet.Position = new Vector2(Position.X + (300.0f * AbsDirection.X), Position.Y + (300.0f * AbsDirection.Y));
+		bullet.Position = new Vector2(Position.X + (AbsDirection.X), (Position.Y + 8)+ (AbsDirection.Y) );
 		bullet.Rotation = AbsDirection.Angle();
 		bullet.Velocity = BulletSpeed * AbsDirection;
 		bullet.ImpactPushSpeed = ImpactPushSpeed;
 		bullet.BulletDamage = BulletDamage;
+		bullet.AddCollisionExceptionWith(this);
 		GetParent().AddChild(bullet);
+		GunReloadTimer.Start();
+		reloading = true;
 	}
 
+	void OnGunReloadTimerTimeout() 
+	{
+		reloading = false;
+	}
 }

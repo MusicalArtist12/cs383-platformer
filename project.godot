@@ -23,6 +23,7 @@ Global="*res://globals/global.gd"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/stretch/mode="viewport"
 
 [dotnet]
 
@@ -72,9 +73,16 @@ pause={
 
 [layer_names]
 
-2d_render/layer_1="Entities"
-2d_render/layer_2="Coins"
-2d_render/layer_3="Bullets"
+2d_physics/layer_1="Entities"
+2d_physics/layer_2="Coins"
+2d_physics/layer_3="Bullets"
+
+[physics]
+
+2d/stretch/mode="disabled"
+2d/layer_3="Bullets"
+2d/layer_2="Coins"
+2d/layer_1="Entities"
 
 [rendering]
 

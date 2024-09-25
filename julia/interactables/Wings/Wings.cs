@@ -4,23 +4,23 @@ using System;
 public partial class Wings : AnimatedSprite2D
 {
 
-	private float Speed = 50.0f;
-	private float DeltaSpeed = 1.0f;
+	private float Speed = 75.0f;
+	private float DeltaSpeed = 75.0f;
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
 
-		if (GetParent() is Character)
+		if (GetParent() is Character character)
 		{
-			Character character = (Character)GetParent();
 			character.Velocity = new Vector2(character.Velocity.X, character.Velocity.Y - Speed);
 
-			Speed -= DeltaSpeed;
+			Speed -= DeltaSpeed * (float)delta;
 
-			if (Speed <= 0)
+			if (Speed <= 0 || character.GetHealth() == 0)
 			{
 				QueueFree();
+				character.HasWings = false;
 			}
 		}
 	}

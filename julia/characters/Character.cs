@@ -6,6 +6,7 @@ public partial class Character : CharacterBody2D {
 	[Export]
 	public int MaxHealth = 100;
 	protected int Health; 
+	public bool HasWings = false;
 
     virtual public int GetHealth() { return Health; }
 

@@ -2,8 +2,6 @@
 
 using Godot;
 using System;
-using System.Diagnostics;
-
 
 public partial class WheelDroid : Character
 {
@@ -28,9 +26,9 @@ public partial class WheelDroid : Character
 	[Export]
 	private float BulletSpeed = 980.0f;
 	[Export]
-	private float ShotRecoil = 50.0f;
+	private float ShotRecoil = 500.0f;
 	[Export]
-	private float ImpactPushSpeed = 100.0f;
+	private float ImpactPushSpeed = 500.0f;
 	[Export]
 	private int BulletDamage = 10;
 
@@ -44,6 +42,8 @@ public partial class WheelDroid : Character
 
 	private bool Awake = false;
 	private bool Aware = false;
+
+	private bool HasDied = false;
 
 	public void WakeUp()
 	{
@@ -69,13 +69,12 @@ public partial class WheelDroid : Character
 		Health -= loss;
 		Sprite.Play("damaged");
 
-		if (Health <= 0) 
+		if (Health <= 0 && !HasDied) 
 		{
 			Sprite.Play("death");
 			Node global = GetTree().Root.GetNode<Node>("Global");
 			global.Call("add_coin", 10);
-			
-			EmitSignal("coin_added");
+			HasDied = true;
 		}
 	}
 
@@ -97,8 +96,6 @@ public partial class WheelDroid : Character
 				break;
 			}
 		}
-
-		Debug.Assert(Enemy != null, "Piggy and WheelDroid must have the same parent");
     }
 
 	public void SetDirection(float dir)
@@ -125,7 +122,8 @@ public partial class WheelDroid : Character
 	{
 		return !(
 			Sprite.IsPlaying() && 
-			(Sprite.GetAnimation() == "shoot" || Sprite.GetAnimation() == "damaged" || Sprite.GetAnimation() == "death")
+			(Sprite.GetAnimation() == "shoot" || Sprite.GetAnimation() == "damaged" || Sprite.GetAnimation() == "death") &&
+			!HasDied
 		);
 	}
 
@@ -144,25 +142,17 @@ public partial class WheelDroid : Character
 
 		}
 
-		if (!IsOnFloor()) {
-			if (!Awake)
-			{
-				WakeUp();
-			}
-		}
-
-		if (Awake && Aware)
+		if (Awake && IsOnFloor() && Aware)
 		{
 			SetDirection(Enemy.Position.X - Position.X);
 
 			// Move towards enemy & Shoot when close enough
 			if (Math.Abs(Enemy.Position.X - Position.X) >= ShotDistance && CanChangeAnimation()) 
 			{
-
 				velocity.X = Mathf.MoveToward(
 					velocity.X, 
 					Speed * Math.Sign(Enemy.Position.X - Position.X), 
-					Accel * (IsOnFloor() ? 1 : )
+					Accel
 				);
 				Sprite.Play("move");
 				
@@ -188,8 +178,17 @@ public partial class WheelDroid : Character
 			velocity.X = Mathf.MoveToward(velocity.X, 0, Decel);
 		}
 
+		
 		Velocity = velocity;
 		MoveAndSlide();
+	}
+
+	public void OnAnimationChange() 
+	{
+		if (Sprite.GetAnimation() == "shoot")
+		{
+			Velocity = new Vector2(Velocity.X + ShotRecoil * Math.Sign(Position.X - Enemy.Position.X), Velocity.Y);
+		}
 	}
 
 	public void OnAnimationFinish() 
@@ -209,10 +208,7 @@ public partial class WheelDroid : Character
 		{
 			QueueFree();
 		}
-		else if (Sprite.GetAnimation() == "shoot")
-		{
-			Velocity = new Vector2(Velocity.X + ShotRecoil * Math.Sign(Position.X - Enemy.Position.X), Velocity.Y);
-		}
+		
 		else if (Sprite.GetAnimation() == "damaged" && !Awake)
 		{
 			Sprite.Play("wakeIdle");
@@ -229,7 +225,8 @@ public partial class WheelDroid : Character
 		Bullet bullet = (Bullet)ResourceLoader.Load<PackedScene>(
 			"res:///julia/interactables/Bullet/Bullet.tscn"
 		).Instantiate();
-		bullet.Position = new Vector2(Position.X, Position.Y + 8);
+		
+		bullet.Position = new Vector2(Position.X, Position.Y - 8);
 		bullet.Velocity = new Vector2(Sprite.FlipH ? -1.0f * BulletSpeed : BulletSpeed, 0.0f);
 		bullet.Damage = BulletDamage;
 		bullet.ImpactPushSpeed = ImpactPushSpeed;

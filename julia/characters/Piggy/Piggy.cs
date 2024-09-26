@@ -154,6 +154,7 @@ public partial class Piggy : Character
 		if (reloading) {
 			return;
 		}
+		
 		WingBullet bullet = (WingBullet)ResourceLoader.Load<PackedScene>(
 			"res:///julia/interactables/WingBullet/WingBullet.tscn"
 		).Instantiate();

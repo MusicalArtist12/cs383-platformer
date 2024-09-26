@@ -18,9 +18,9 @@ public partial class Character : CharacterBody2D {
 
     public void GravityFallDamage(double delta) 
     {
+		Velocity += GetGravity() * (float)delta;
         if (!IsOnFloor())
 		{
-			Velocity += GetGravity() * (float)delta;
 			FallingVelocity = Velocity.Y;
 		}
 		else

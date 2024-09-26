@@ -28,15 +28,16 @@ public partial class Piggy : Character
 	private float JumpVelocity = -100.0f;
 	private float Speed;
 	
-
+	[Export]
+	private float AirSpeedMultiplier = 0.2f;
 
 	[ExportGroup("Weapon")]
 	[Export]
 	private float BulletSpeed = 980.0f;
 	[Export]
-	private float ShotRecoil = 50.0f;
+	private float ShotRecoil = 500.0f;
 	[Export]
-	private float ImpactPushSpeed = 100.0f;
+	private float ImpactPushSpeed = 500.0f;
 	[Export]
 	private int BulletDamage = 10;
 
@@ -118,24 +119,30 @@ public partial class Piggy : Character
 			{
 				velocity.X = Mathf.MoveToward(velocity.X, 0, Decel);
 			}
-
-			if (Mathf.Abs(velocity.X) > 0)
+		}
+		else {
+			if (direction != Vector2.Zero)
 			{
-				if (!(Sprite.IsPlaying() && Sprite.GetAnimation() == "damaged"))
-				{
-					Sprite.Play("walk");
-				}
-				
-				Sprite.SpeedScale = Mathf.Abs(velocity.X) / WalkSpeed;
+				velocity.X = Mathf.MoveToward(velocity.X, direction.X * Speed, Accel * AirSpeedMultiplier);
 			}
-			else
-			{	
-				Sprite.SpeedScale = 1.0f;
-				if (!(Sprite.IsPlaying() && Sprite.GetAnimation() == "damaged")) 
-				{
-					Sprite.Play("idle");
-				}	
+		}
+		
+		if (Mathf.Abs(velocity.X) > 0)
+		{
+			if (!(Sprite.IsPlaying() && Sprite.GetAnimation() == "damaged"))
+			{
+				Sprite.Play("walk");
 			}
+			
+			Sprite.SpeedScale = Mathf.Abs(velocity.X) / WalkSpeed;
+		}
+		else
+		{	
+			Sprite.SpeedScale = 1.0f;
+			if (!(Sprite.IsPlaying() && Sprite.GetAnimation() == "damaged")) 
+			{
+				Sprite.Play("idle");
+			}	
 		}
 		
 		Velocity = velocity;

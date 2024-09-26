@@ -2,6 +2,8 @@
 
 using Godot;
 using System;
+using System.Diagnostics;
+
 
 public partial class WheelDroid : Character
 {
@@ -70,6 +72,10 @@ public partial class WheelDroid : Character
 		if (Health <= 0) 
 		{
 			Sprite.Play("death");
+			Node global = GetTree().Root.GetNode<Node>("Global");
+			global.Call("add_coin", 10);
+			
+			EmitSignal("coin_added");
 		}
 	}
 
@@ -91,6 +97,8 @@ public partial class WheelDroid : Character
 				break;
 			}
 		}
+
+		Debug.Assert(Enemy != null, "Piggy and WheelDroid must have the same parent");
     }
 
 	public void SetDirection(float dir)
@@ -136,17 +144,25 @@ public partial class WheelDroid : Character
 
 		}
 
-		if (Awake && IsOnFloor() && Aware)
+		if (!IsOnFloor()) {
+			if (!Awake)
+			{
+				WakeUp();
+			}
+		}
+
+		if (Awake && Aware)
 		{
 			SetDirection(Enemy.Position.X - Position.X);
 
 			// Move towards enemy & Shoot when close enough
 			if (Math.Abs(Enemy.Position.X - Position.X) >= ShotDistance && CanChangeAnimation()) 
 			{
+
 				velocity.X = Mathf.MoveToward(
 					velocity.X, 
 					Speed * Math.Sign(Enemy.Position.X - Position.X), 
-					Accel
+					Accel * (IsOnFloor() ? 1 : )
 				);
 				Sprite.Play("move");
 				
@@ -172,7 +188,6 @@ public partial class WheelDroid : Character
 			velocity.X = Mathf.MoveToward(velocity.X, 0, Decel);
 		}
 
-		
 		Velocity = velocity;
 		MoveAndSlide();
 	}

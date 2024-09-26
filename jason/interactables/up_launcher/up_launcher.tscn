@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://smo0iqgchyd4"]
 
-[ext_resource type="Texture2D" uid="uid://c7iby5f8lu4rb" path="res://assets/Up_Launcher-Sheet.png" id="1_c68jn"]
+[ext_resource type="Texture2D" uid="uid://cwtwtxphthhx" path="res://assets/Up_Launcher-Sheet.png" id="1_c68jn"]
 [ext_resource type="Script" path="res://jason/interactables/up_launcher/up_launcher.gd" id="1_s0hb3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_udqjw"]
@@ -89,6 +89,8 @@ scale = Vector2(3, 3)
 script = ExtResource("1_s0hb3")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-0.25, 10.25)

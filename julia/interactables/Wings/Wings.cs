@@ -5,7 +5,7 @@ public partial class Wings : AnimatedSprite2D
 {
 
 	private float Speed = 75.0f;
-	private float DeltaSpeed = 75.0f;
+	private float DeltaSpeed = 150.0f;
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)

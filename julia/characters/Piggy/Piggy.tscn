@@ -9,8 +9,8 @@ size = Vector2(18, 20)
 
 [node name="Piggy" type="CharacterBody2D"]
 scale = Vector2(5, 5)
-collision_layer = 7
-collision_mask = 7
+collision_layer = 15
+collision_mask = 15
 script = ExtResource("1_p0k7k")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

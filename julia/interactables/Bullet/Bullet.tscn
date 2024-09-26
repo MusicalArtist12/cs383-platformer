@@ -6,8 +6,8 @@
 size = Vector2(10, 10)
 
 [node name="Bullet" type="CharacterBody2D"]
-collision_layer = 4
-collision_mask = 4
+collision_layer = 5
+collision_mask = 5
 script = ExtResource("1_5fygj")
 
 [node name="ColorRect" type="ColorRect" parent="."]

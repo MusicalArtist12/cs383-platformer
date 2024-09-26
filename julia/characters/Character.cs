@@ -27,7 +27,7 @@ public partial class Character : CharacterBody2D {
 		{
 			if (FallingVelocity > 500.0f)
 			{
-				TakeDamage((int)FallingVelocity / 100);
+				TakeDamage((int)FallingVelocity / 150);
 				FallingVelocity = 0.0f;
 			}
 		}

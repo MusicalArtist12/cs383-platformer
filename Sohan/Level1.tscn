@@ -702,6 +702,14 @@ position = Vector2(1656, -944)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.827451, 0.619608, 0.682353, 0.156863)
+
 [node name="PausedMenu" parent="CanvasLayer" instance=ExtResource("8_kbkds")]
 
 [node name="Win_screen" parent="CanvasLayer" instance=ExtResource("9_heh65")]
@@ -751,13 +759,5 @@ theme_override_font_sizes/font_size = 20
 text = "0
 "
 script = SubResource("GDScript_idvcg")
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.827451, 0.619608, 0.682353, 0.156863)
 
 [connection signal="PiggyKilled" from="Critters/Piggy" to="CanvasLayer/Death Screen" method="set_visible" binds= [true]]

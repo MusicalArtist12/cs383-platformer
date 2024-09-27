@@ -1,25 +1,25 @@
 [gd_scene load_steps=33 format=4 uid="uid://cq7ve0f4b6cen"]
 
-[ext_resource type="Texture2D" uid="uid://djmnkcypx7m12" path="res://Sohan/Assets/Decorations/Tileset/Mossy - TileSet.png" id="1_s5in1"]
-[ext_resource type="Texture2D" uid="uid://r52yvi38npt5" path="res://Sohan/Assets/Decorations/Tileset/Mossy - BackgroundDecoration.png" id="2_0rk40"]
-[ext_resource type="Texture2D" uid="uid://drixy4as43qtr" path="res://Sohan/Assets/Parallax_Background/space_background_pack/Assets/Old Version/layers/parallax-space-ring-planet.png" id="2_esev0"]
-[ext_resource type="Texture2D" uid="uid://1vewykymrlyg" path="res://Sohan/Assets/Parallax_Background/space_background_pack/Assets/Old Version/layers/parallax-space-big-planet.png" id="2_u7k62"]
-[ext_resource type="Texture2D" uid="uid://jwpuh6rortu4" path="res://Sohan/Assets/Decorations/Tileset/Mossy - MossyHills.png" id="3_dv6dl"]
-[ext_resource type="Texture2D" uid="uid://c0bupeleal7gj" path="res://Sohan/Assets/Parallax_Background/space_background_pack/Assets/Old Version/layers/parallax-space-far-planets.png" id="3_hlcr7"]
-[ext_resource type="Texture2D" uid="uid://dbbsdy2vx108n" path="res://Sohan/Assets/Parallax_Background/space_background_pack/Assets/Old Version/layers/parallax-space-stars.png" id="3_hyt2x"]
-[ext_resource type="Texture2D" uid="uid://dfkaclwxq3qsv" path="res://Sohan/Assets/Decorations/Tileset/Mossy - Hanging Plants.png" id="4_030xm"]
-[ext_resource type="Texture2D" uid="uid://deknb4turdtrp" path="res://Sohan/Assets/Decorations/Tileset/Mossy - Decorations&Hazards.png" id="5_kdqho"]
+[ext_resource type="Texture2D" uid="uid://us51xfk65hm1" path="res://Sohan/Assets/Decorations/Tileset/Mossy - TileSet.png" id="1_s5in1"]
+[ext_resource type="Texture2D" uid="uid://nlk6iua3v8a3" path="res://Sohan/Assets/Decorations/Tileset/Mossy - BackgroundDecoration.png" id="2_0rk40"]
+[ext_resource type="Texture2D" uid="uid://bmalwoc51tkvl" path="res://Sohan/Assets/Parallax_Background/space_background_pack/Assets/Old Version/layers/parallax-space-ring-planet.png" id="2_esev0"]
+[ext_resource type="Texture2D" uid="uid://8x1usuj30j82" path="res://Sohan/Assets/Parallax_Background/space_background_pack/Assets/Old Version/layers/parallax-space-big-planet.png" id="2_u7k62"]
+[ext_resource type="Texture2D" uid="uid://b84dqwb4kd3ct" path="res://Sohan/Assets/Decorations/Tileset/Mossy - MossyHills.png" id="3_dv6dl"]
+[ext_resource type="Texture2D" uid="uid://b80butxi4muwl" path="res://Sohan/Assets/Parallax_Background/space_background_pack/Assets/Old Version/layers/parallax-space-far-planets.png" id="3_hlcr7"]
+[ext_resource type="Texture2D" uid="uid://b8vau8w57xq5b" path="res://Sohan/Assets/Parallax_Background/space_background_pack/Assets/Old Version/layers/parallax-space-stars.png" id="3_hyt2x"]
+[ext_resource type="Texture2D" uid="uid://crh5sjeypuls" path="res://Sohan/Assets/Decorations/Tileset/Mossy - Hanging Plants.png" id="4_030xm"]
+[ext_resource type="Texture2D" uid="uid://dv6xc3f08f1ei" path="res://Sohan/Assets/Decorations/Tileset/Mossy - Decorations&Hazards.png" id="5_kdqho"]
 [ext_resource type="PackedScene" uid="uid://bvrpjueep3mwg" path="res://julia/characters/Piggy/Piggy.tscn" id="6_wwek1"]
 [ext_resource type="PackedScene" uid="uid://2wspuye35oeg" path="res://julia/characters/WheelDroid/WheelDroid.tscn" id="7_c32dy"]
 [ext_resource type="PackedScene" uid="uid://b3fivdkfeiiwn" path="res://Clayton/Pause/paused_menu.tscn" id="8_kbkds"]
 [ext_resource type="PackedScene" uid="uid://0ofkuv0avpt4" path="res://jason/interactables/launcher/launcher.tscn" id="8_kc78f"]
 [ext_resource type="PackedScene" uid="uid://pxtxu2td3pe5" path="res://jason/interactables/coin/coin.tscn" id="9_51v8n"]
-[ext_resource type="FontFile" uid="uid://c3ddcdr6giwl3" path="res://Clayton/Daydream.ttf" id="9_fqv1s"]
+[ext_resource type="FontFile" uid="uid://d3qi3ob7t6gkc" path="res://Clayton/Daydream.ttf" id="9_fqv1s"]
 [ext_resource type="PackedScene" uid="uid://cb8qpgomrmtkg" path="res://Clayton/Death_Win/win_screen.tscn" id="9_heh65"]
 [ext_resource type="PackedScene" uid="uid://bmwu2wfcnufjk" path="res://Clayton/Death_Win/death_screen.tscn" id="9_jlyym"]
 [ext_resource type="Script" path="res://Clayton/HUD/ScoreCounter.cs" id="11_1tvwy"]
 [ext_resource type="PackedScene" uid="uid://smo0iqgchyd4" path="res://jason/interactables/up_launcher/up_launcher.tscn" id="15_ywrm5"]
-[ext_resource type="Texture2D" uid="uid://bhato4lt1w734" path="res://Sohan/Assets/Parallax_Background/space_background_pack/Assets/Old Version/layers/parallax-space-backgound.png" id="16_e8xlj"]
+[ext_resource type="Texture2D" uid="uid://dq0b1rf08v8nj" path="res://Sohan/Assets/Parallax_Background/space_background_pack/Assets/Old Version/layers/parallax-space-backgound.png" id="16_e8xlj"]
 
 [sub_resource type="GDScript" id="GDScript_puwmt"]
 script/source = "extends ParallaxBackground
@@ -467,7 +467,6 @@ scale = Vector2(14.2279, 10.025)
 texture = ExtResource("3_hlcr7")
 
 [node name="Big Planets" type="ParallaxLayer" parent="Tilemaps/Scale Mod/ParallaxBackground"]
-scale = Vector2(1, 1)
 motion_scale = Vector2(0.5, 0.5)
 motion_mirroring = Vector2(8585, 0)
 
@@ -628,58 +627,6 @@ position = Vector2(2307, -1068)
 [node name="Coin17" parent="Coins" instance=ExtResource("9_51v8n")]
 position = Vector2(6199, -1889)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Win_screen" parent="CanvasLayer" instance=ExtResource("9_heh65")]
-visible = false
-
-[node name="Death Screen" parent="CanvasLayer" instance=ExtResource("9_jlyym")]
-visible = false
-
-[node name="HFlowContainer" type="VFlowContainer" parent="CanvasLayer"]
-offset_left = 50.0
-offset_top = 50.0
-offset_right = 1282.0
-offset_bottom = 490.0
-
-[node name="Health" type="GridContainer" parent="CanvasLayer/HFlowContainer"]
-layout_mode = 2
-columns = 2
-
-[node name="Label" type="Label" parent="CanvasLayer/HFlowContainer/Health"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("9_fqv1s")
-theme_override_font_sizes/font_size = 20
-text = "Health: "
-
-[node name="Score" type="Label" parent="CanvasLayer/HFlowContainer/Health"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("9_fqv1s")
-theme_override_font_sizes/font_size = 20
-text = "0
-"
-script = ExtResource("11_1tvwy")
-
-[node name="Score" type="GridContainer" parent="CanvasLayer/HFlowContainer"]
-layout_mode = 2
-columns = 2
-
-[node name="CPoints" type="Label" parent="CanvasLayer/HFlowContainer/Score"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("9_fqv1s")
-theme_override_font_sizes/font_size = 20
-text = "Coin Points: "
-
-[node name="Score" type="Label" parent="CanvasLayer/HFlowContainer/Score"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("9_fqv1s")
-theme_override_font_sizes/font_size = 20
-text = "0
-"
-script = SubResource("GDScript_idvcg")
-
-[node name="PausedMenu" parent="CanvasLayer" instance=ExtResource("8_kbkds")]
-
 [node name="Launchers" type="Node2D" parent="."]
 top_level = true
 visibility_layer = 2
@@ -752,5 +699,65 @@ yVelocity = 110
 
 [node name="Launcher5" parent="Launchers" instance=ExtResource("8_kc78f")]
 position = Vector2(1656, -944)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PausedMenu" parent="CanvasLayer" instance=ExtResource("8_kbkds")]
+
+[node name="Win_screen" parent="CanvasLayer" instance=ExtResource("9_heh65")]
+visible = false
+
+[node name="Death Screen" parent="CanvasLayer" instance=ExtResource("9_jlyym")]
+visible = false
+
+[node name="HFlowContainer" type="VFlowContainer" parent="CanvasLayer"]
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 1282.0
+offset_bottom = 490.0
+
+[node name="Health" type="GridContainer" parent="CanvasLayer/HFlowContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/HFlowContainer/Health"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_fqv1s")
+theme_override_font_sizes/font_size = 20
+text = "Health: "
+
+[node name="Score" type="Label" parent="CanvasLayer/HFlowContainer/Health"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_fqv1s")
+theme_override_font_sizes/font_size = 20
+text = "0
+"
+script = ExtResource("11_1tvwy")
+
+[node name="Score" type="GridContainer" parent="CanvasLayer/HFlowContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="CPoints" type="Label" parent="CanvasLayer/HFlowContainer/Score"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_fqv1s")
+theme_override_font_sizes/font_size = 20
+text = "Coin Points: "
+
+[node name="Score" type="Label" parent="CanvasLayer/HFlowContainer/Score"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_fqv1s")
+theme_override_font_sizes/font_size = 20
+text = "0
+"
+script = SubResource("GDScript_idvcg")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.827451, 0.619608, 0.682353, 0.156863)
 
 [connection signal="PiggyKilled" from="Critters/Piggy" to="CanvasLayer/Death Screen" method="set_visible" binds= [true]]

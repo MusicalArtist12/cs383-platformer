@@ -294,6 +294,7 @@ collision_layer = 13
 collision_mask = 13
 floor_stop_on_slope = false
 script = ExtResource("1_20oop")
+ImpactPushSpeed = 250.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(36, 0)

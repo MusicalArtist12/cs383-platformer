@@ -1,0 +1,130 @@
+[gd_scene load_steps=4 format=3 uid="uid://dt0ybjtryqlnd"]
+
+[ext_resource type="Texture2D" uid="uid://ejer32poeoxe" path="res://Sohan/Assets/Parallax_Background/space_background_pack/Assets/Blue Version/layered/blue-back.png" id="1_ucy23"]
+[ext_resource type="Texture2D" uid="uid://df63h08ikwwnv" path="res://Sohan/Assets/Parallax_Background/space_background_pack/Assets/Blue Version/layered/blue-stars.png" id="2_hvp02"]
+[ext_resource type="Texture2D" uid="uid://c1usd4a57gx1c" path="res://Sohan/Assets/Parallax_Background/space_background_pack/Assets/Blue Version/layered/asteroid-2.png" id="3_53lj6"]
+
+[node name="Background" type="Node2D"]
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+offset = Vector2(960, 500)
+transform = Transform2D(1, 0, 0, 1, 960, 500)
+follow_viewport_enabled = true
+
+[node name="Control" type="Control" parent="Background"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = -960.0
+offset_bottom = -540.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Background/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2880.0
+offset_top = -1620.0
+offset_right = 2880.0
+offset_bottom = 1620.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.0156863, 0.0941176, 1)
+
+[node name="Nebula" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.1, 0.1)
+scroll_offset = Vector2(400, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Nebula"]
+position = Vector2(0, -300)
+scale = Vector2(10, 10)
+texture = ExtResource("1_ucy23")
+
+[node name="Stars" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.4, 0.4)
+repeat_size = Vector2(2720, 1600)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Stars"]
+scale = Vector2(10, 10)
+texture = ExtResource("2_hvp02")
+
+[node name="scale-5-asteroids" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.6, 0.6)
+repeat_size = Vector2(1920, 1080)
+repeat_times = 3
+
+[node name="Asteroid-2" type="Sprite2D" parent="Background/scale-5-asteroids"]
+position = Vector2(-309, 973)
+scale = Vector2(5, 5)
+texture = ExtResource("3_53lj6")
+
+[node name="Asteroid-3" type="Sprite2D" parent="Background/scale-5-asteroids"]
+position = Vector2(-1102, -395)
+scale = Vector2(5, 5)
+texture = ExtResource("3_53lj6")
+
+[node name="Asteroid-4" type="Sprite2D" parent="Background/scale-5-asteroids"]
+position = Vector2(-645, 274)
+scale = Vector2(5, 5)
+texture = ExtResource("3_53lj6")
+
+[node name="Asteroid-5" type="Sprite2D" parent="Background/scale-5-asteroids"]
+position = Vector2(310, -929)
+scale = Vector2(5, 5)
+texture = ExtResource("3_53lj6")
+
+[node name="scale8-asteroids" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.7, 0.7)
+repeat_size = Vector2(1920, 1080)
+repeat_times = 3
+
+[node name="Asteroid-2" type="Sprite2D" parent="Background/scale8-asteroids"]
+position = Vector2(-1232, 210)
+scale = Vector2(8, 8)
+texture = ExtResource("3_53lj6")
+
+[node name="Asteroid-3" type="Sprite2D" parent="Background/scale8-asteroids"]
+position = Vector2(1264, -135)
+scale = Vector2(8, 8)
+texture = ExtResource("3_53lj6")
+
+[node name="Asteroid-4" type="Sprite2D" parent="Background/scale8-asteroids"]
+position = Vector2(319, 810)
+scale = Vector2(8, 8)
+texture = ExtResource("3_53lj6")
+
+[node name="Asteroid-5" type="Sprite2D" parent="Background/scale8-asteroids"]
+position = Vector2(-345, -649)
+scale = Vector2(8, 8)
+texture = ExtResource("3_53lj6")
+
+[node name="scale10-asteroids" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.8, 0.8)
+repeat_size = Vector2(1920, 1080)
+repeat_times = 3
+
+[node name="Asteroid-2" type="Sprite2D" parent="Background/scale10-asteroids"]
+position = Vector2(1309, -153)
+scale = Vector2(10, 10)
+texture = ExtResource("3_53lj6")
+
+[node name="Asteroid-3" type="Sprite2D" parent="Background/scale10-asteroids"]
+position = Vector2(123, -757)
+scale = Vector2(10, 10)
+texture = ExtResource("3_53lj6")
+
+[node name="Asteroid-4" type="Sprite2D" parent="Background/scale10-asteroids"]
+position = Vector2(597, -200)
+scale = Vector2(10, 10)
+texture = ExtResource("3_53lj6")

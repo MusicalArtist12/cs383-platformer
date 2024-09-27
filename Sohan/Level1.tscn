@@ -1,8 +1,12 @@
-[gd_scene load_steps=27 format=4 uid="uid://cq7ve0f4b6cen"]
+[gd_scene load_steps=33 format=4 uid="uid://cq7ve0f4b6cen"]
 
 [ext_resource type="Texture2D" uid="uid://djmnkcypx7m12" path="res://Sohan/Assets/Decorations/Tileset/Mossy - TileSet.png" id="1_s5in1"]
 [ext_resource type="Texture2D" uid="uid://r52yvi38npt5" path="res://Sohan/Assets/Decorations/Tileset/Mossy - BackgroundDecoration.png" id="2_0rk40"]
+[ext_resource type="Texture2D" uid="uid://drixy4as43qtr" path="res://Sohan/Assets/Parallax_Background/space_background_pack/Assets/Old Version/layers/parallax-space-ring-planet.png" id="2_esev0"]
+[ext_resource type="Texture2D" uid="uid://1vewykymrlyg" path="res://Sohan/Assets/Parallax_Background/space_background_pack/Assets/Old Version/layers/parallax-space-big-planet.png" id="2_u7k62"]
 [ext_resource type="Texture2D" uid="uid://jwpuh6rortu4" path="res://Sohan/Assets/Decorations/Tileset/Mossy - MossyHills.png" id="3_dv6dl"]
+[ext_resource type="Texture2D" uid="uid://c0bupeleal7gj" path="res://Sohan/Assets/Parallax_Background/space_background_pack/Assets/Old Version/layers/parallax-space-far-planets.png" id="3_hlcr7"]
+[ext_resource type="Texture2D" uid="uid://dbbsdy2vx108n" path="res://Sohan/Assets/Parallax_Background/space_background_pack/Assets/Old Version/layers/parallax-space-stars.png" id="3_hyt2x"]
 [ext_resource type="Texture2D" uid="uid://dfkaclwxq3qsv" path="res://Sohan/Assets/Decorations/Tileset/Mossy - Hanging Plants.png" id="4_030xm"]
 [ext_resource type="Texture2D" uid="uid://deknb4turdtrp" path="res://Sohan/Assets/Decorations/Tileset/Mossy - Decorations&Hazards.png" id="5_kdqho"]
 [ext_resource type="PackedScene" uid="uid://bvrpjueep3mwg" path="res://julia/characters/Piggy/Piggy.tscn" id="6_wwek1"]
@@ -15,6 +19,21 @@
 [ext_resource type="PackedScene" uid="uid://bmwu2wfcnufjk" path="res://Clayton/Death_Win/death_screen.tscn" id="9_jlyym"]
 [ext_resource type="Script" path="res://Clayton/HUD/ScoreCounter.cs" id="11_1tvwy"]
 [ext_resource type="PackedScene" uid="uid://smo0iqgchyd4" path="res://jason/interactables/up_launcher/up_launcher.tscn" id="15_ywrm5"]
+[ext_resource type="Texture2D" uid="uid://bhato4lt1w734" path="res://Sohan/Assets/Parallax_Background/space_background_pack/Assets/Old Version/layers/parallax-space-backgound.png" id="16_e8xlj"]
+
+[sub_resource type="GDScript" id="GDScript_puwmt"]
+script/source = "extends ParallaxBackground
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	scroll_offset.x -= 40*delta
+"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ue5em"]
 texture = ExtResource("2_0rk40")
@@ -416,6 +435,72 @@ func _process(delta: float) -> void:
 [node name="Scale Mod" type="Node2D" parent="Tilemaps"]
 scale = Vector2(0.2, 0.2)
 
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Tilemaps/Scale Mod"]
+script = SubResource("GDScript_puwmt")
+
+[node name="Sprite2D" type="Sprite2D" parent="Tilemaps/Scale Mod/ParallaxBackground"]
+position = Vector2(3582, -554.25)
+scale = Vector2(36.7978, 29.0781)
+texture = ExtResource("16_e8xlj")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="Tilemaps/Scale Mod/ParallaxBackground"]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(8585, 0)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Tilemaps/Scale Mod/ParallaxBackground/ParallaxLayer3"]
+position = Vector2(487.5, -524)
+scale = Vector2(8.73162, 10.2)
+texture = ExtResource("3_hyt2x")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Tilemaps/Scale Mod/ParallaxBackground/ParallaxLayer3"]
+position = Vector2(5185, -1090)
+scale = Vector2(17.2574, 17.275)
+texture = ExtResource("3_hyt2x")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Tilemaps/Scale Mod/ParallaxBackground"]
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(8585, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Tilemaps/Scale Mod/ParallaxBackground/ParallaxLayer2"]
+position = Vector2(3626, -507)
+scale = Vector2(14.2279, 10.025)
+texture = ExtResource("3_hlcr7")
+
+[node name="Big Planets" type="ParallaxLayer" parent="Tilemaps/Scale Mod/ParallaxBackground"]
+scale = Vector2(1, 1)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(8585, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Tilemaps/Scale Mod/ParallaxBackground/Big Planets"]
+position = Vector2(-414, -221)
+scale = Vector2(5.34091, 4.53161)
+texture = ExtResource("2_u7k62")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Tilemaps/Scale Mod/ParallaxBackground/Big Planets"]
+position = Vector2(4282, -167)
+scale = Vector2(5.34091, 4.53161)
+texture = ExtResource("2_u7k62")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Tilemaps/Scale Mod/ParallaxBackground/Big Planets"]
+position = Vector2(2194, 58)
+scale = Vector2(5.34091, 4.71408)
+texture = ExtResource("2_u7k62")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Tilemaps/Scale Mod/ParallaxBackground/Big Planets"]
+position = Vector2(7265.34, -304.406)
+scale = Vector2(9.15072, 3.43641)
+texture = ExtResource("2_esev0")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Tilemaps/Scale Mod/ParallaxBackground/Big Planets"]
+position = Vector2(3378, -480)
+scale = Vector2(9.15072, 3.43641)
+texture = ExtResource("2_esev0")
+
+[node name="Sprite2D6" type="Sprite2D" parent="Tilemaps/Scale Mod/ParallaxBackground/Big Planets"]
+position = Vector2(788, -367)
+scale = Vector2(9.15072, 3.43641)
+texture = ExtResource("2_esev0")
+
 [node name="Background" type="TileMapLayer" parent="Tilemaps/Scale Mod"]
 modulate = Color(1, 1, 1, 0.321569)
 tile_map_data = PackedByteArray("AAAPAP7/AAAFAAAAAAAPAP//AAAFAAEAAAAQAP7/AAAGAAAAAAAQAP//AAAGAAEAAAARAP7/AAAHAAAAAAARAP//AAAHAAEAAAAMAPz/AAAAAAIAAAAMAP3/AAAAAAMAAAAMAP7/AAAAAAQAAAAMAP//AAAAAAUAAAANAPz/AAABAAIAAAANAP3/AAABAAMAAAANAP7/AAABAAQAAAANAP//AAABAAUAAAAEAPj/AAAAAAAAAAAaAP7/AAACAAUAAAAaAP//AAACAAYAAAAbAP7/AAADAAUAAAAbAP//AAADAAYAAAAcAP7/AAAEAAUAAAAcAP//AAAEAAYAAAAUAPr/AAACAAUAAAAUAPv/AAACAAYAAAAVAPr/AAADAAUAAAAVAPv/AAADAAYAAAAWAPr/AAAEAAUAAAAWAPv/AAAEAAYAAAD9//7/AAACAAUAAAD9////AAACAAYAAAD+//7/AAADAAUAAAD+////AAADAAYAAAD///7/AAAEAAUAAAD/////AAAEAAYAAAA9APr/AAACAAUAAAA9APv/AAACAAYAAAA+APr/AAADAAUAAAA+APv/AAADAAYAAAA/APr/AAAEAAUAAAA/APv/AAAEAAYAAAA1APb/AAACAAUAAAA1APf/AAACAAYAAAA2APb/AAADAAUAAAA2APf/AAADAAYAAAA3APb/AAAEAAUAAAA3APf/AAAEAAYAAAAuAPL/AAACAAUAAAAuAPP/AAACAAYAAAAvAPL/AAADAAUAAAAvAPP/AAADAAYAAAAwAPL/AAAEAAUAAAAwAPP/AAAEAAYAAAAxAPr/AAACAAUAAAAxAPv/AAACAAYAAAAyAPr/AAADAAUAAAAyAPv/AAADAAYAAAAzAPr/AAAEAAUAAAAzAPv/AAAEAAYAAAA=")
@@ -667,3 +752,5 @@ yVelocity = 110
 
 [node name="Launcher5" parent="Launchers" instance=ExtResource("8_kc78f")]
 position = Vector2(1656, -944)
+
+[connection signal="PiggyKilled" from="Critters/Piggy" to="CanvasLayer/Death Screen" method="set_visible" binds= [true]]

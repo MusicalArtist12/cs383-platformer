@@ -1,5 +1,4 @@
-# Where to Download
-
+Download versions for Windows, macos, or Linux [here](https://github.com/MusicalArtist12/cs383-platformer/releases)
 
 # Credits
 - [Julia Abdel-Monem](https://github.com/MusicalArtist12)

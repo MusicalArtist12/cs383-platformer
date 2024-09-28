@@ -16,3 +16,13 @@ Download versions for Windows, macos, or Linux [here](https://github.com/Musical
 - [Mossy Cavern](https://maaot.itch.io/mossy-cavern): *maaot*
 - [Space Background Pack](https://ansimuz.itch.io/space-background): *ansimuz* 
 - [Flag Sprite Free](https://ankousse26.itch.io/free-flag-with-animation): *ankousse26*
+
+# GPLv3 License
+
+| Permissions | Conditions | Limitations | 
+| --- | --- | --- | 
+| Commercial use | Disclose Source | Liability | 
+| Distribution | License and Copyright Notice | Warranty |
+| Modification | Same License | |
+| Patent use | State changes | | 
+| Private use | | | 

@@ -1,10 +1,12 @@
 Download versions for Windows, macos, or Linux [here](https://github.com/MusicalArtist12/cs383-platformer/releases)
 
 # Credits
-- [Julia Abdel-Monem](https://github.com/MusicalArtist12)
-- [Jason Culbertson](https://github.com/JTCulbertson)
-- [Sohan Lama](https://github.com/Soohann)
-- [Clayton Slack](https://github.com/Harpy88)
+- [Julia Abdel-Monem](https://github.com/MusicalArtist12) - Main Character
+- [Jason Culbertson](https://github.com/JTCulbertson) - Enemies
+- [Sohan Lama](https://github.com/Soohann) - Background
+- [Clayton Slack](https://github.com/Harpy88) - UI
+
+
 
 ## Asset Credits
 - [Piggy](https://caz-creates-games.itch.io/piggy): *caz-creates-games*
@@ -18,6 +20,8 @@ Download versions for Windows, macos, or Linux [here](https://github.com/Musical
 - [Flag Sprite Free](https://ankousse26.itch.io/free-flag-with-animation): *ankousse26*
 - [Pop Sound](https://pixabay.com/sound-effects/search/pop/)
 
+
+Made with Godot mono v4.3
 
 # GPLv3 License
 

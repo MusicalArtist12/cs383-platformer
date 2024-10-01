@@ -6,6 +6,8 @@ Download versions for Windows, macos, or Linux [here](https://github.com/Musical
 - [Sohan Lama](https://github.com/Soohann)
 - [Clayton Slack](https://github.com/Harpy88)
 
+
+
 ## Asset Credits
 - [Piggy](https://caz-creates-games.itch.io/piggy): *caz-creates-games*
 	- Modified to add a damaged animation
@@ -16,6 +18,8 @@ Download versions for Windows, macos, or Linux [here](https://github.com/Musical
 - [Mossy Cavern](https://maaot.itch.io/mossy-cavern): *maaot*
 - [Space Background Pack](https://ansimuz.itch.io/space-background): *ansimuz* 
 - [Flag Sprite Free](https://ankousse26.itch.io/free-flag-with-animation): *ankousse26*
+
+Made with Godot mono v4.3
 
 # GPLv3 License
 

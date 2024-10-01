@@ -1,10 +1,10 @@
 Download versions for Windows, macos, or Linux [here](https://github.com/MusicalArtist12/cs383-platformer/releases)
 
 # Credits
-- [Julia Abdel-Monem](https://github.com/MusicalArtist12)
-- [Jason Culbertson](https://github.com/JTCulbertson)
-- [Sohan Lama](https://github.com/Soohann)
-- [Clayton Slack](https://github.com/Harpy88)
+- [Julia Abdel-Monem](https://github.com/MusicalArtist12) - Main Character
+- [Jason Culbertson](https://github.com/JTCulbertson) - Enemies
+- [Sohan Lama](https://github.com/Soohann) - Background
+- [Clayton Slack](https://github.com/Harpy88) - UI
 
 
 

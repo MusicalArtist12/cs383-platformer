@@ -63,6 +63,8 @@ public partial class Piggy : Character
 		Sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		WingGun = GetNode<Sprite2D>("WingGun");
 		GunReloadTimer = GetNode<Timer>("GunReloadTimer");
+
+		base._Ready();
     }
 
 
@@ -158,6 +160,8 @@ public partial class Piggy : Character
 		WingBullet bullet = (WingBullet)ResourceLoader.Load<PackedScene>(
 			"res:///julia/interactables/WingBullet/WingBullet.tscn"
 		).Instantiate();
+
+		base.EmitPopSound();
 		
 		Vector2 AbsDirection = new Vector2(Direction.X * XDirection, Direction.Y);
 

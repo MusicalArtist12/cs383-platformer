@@ -8,6 +8,8 @@ public partial class Character : CharacterBody2D {
 	protected int Health; 
 	public bool HasWings = false;
 
+	public AudioStreamPlayer PopStream;
+
     virtual public int GetHealth() { return Health; }
 
     virtual public void TakeDamage(int loss) 
@@ -33,5 +35,24 @@ public partial class Character : CharacterBody2D {
 		}
 
     }
+
+    public override void _Ready()
+    {
+        var sound = ResourceLoader.Load<AudioStream>(
+			"res://assets/pop.mp3"
+		);
+
+		PopStream = new AudioStreamPlayer();
+		PopStream.Stream = sound;
+		PopStream.VolumeDb = 5;
+		PopStream.MaxPolyphony = 100;
+
+		AddChild(PopStream);
+    }
+
+    public void EmitPopSound() 
+	{
+		PopStream.Play(0.2f);
+	}
 
 }

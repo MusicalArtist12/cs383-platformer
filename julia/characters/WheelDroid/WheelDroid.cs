@@ -64,17 +64,26 @@ public partial class WheelDroid : Character
 		}
 	}
 
+	public void Die() 
+	{
+		Sprite.Play("death");
+		Node global = GetTree().Root.GetNode<Node>("Global");
+		
+		if (!HasDied) {
+			global.Call("add_coin", 10);
+		}
+
+		HasDied = true;
+	}
+
 	public override void TakeDamage(int loss) 
 	{
 		Health -= loss;
 		Sprite.Play("damaged");
 
-		if (Health <= 0 && !HasDied) 
+		if (Health <= 0) 
 		{
-			Sprite.Play("death");
-			Node global = GetTree().Root.GetNode<Node>("Global");
-			global.Call("add_coin", 10);
-			HasDied = true;
+			Die();
 		}
 	}
 
@@ -96,6 +105,8 @@ public partial class WheelDroid : Character
 				break;
 			}
 		}
+
+		base._Ready();
     }
 
 	public void SetDirection(float dir)
@@ -132,6 +143,10 @@ public partial class WheelDroid : Character
 		GravityFallDamage(delta);
 		Vector2 velocity = Velocity;
 
+		// make sure that things stay dead.
+		if (HasDied) {
+			Die();
+		}
 
 		if (IsOnFloor() && Position.DistanceTo(Enemy.Position) < AwareDistance)
 		{
@@ -219,8 +234,8 @@ public partial class WheelDroid : Character
 
 	}
 
-	public void OnChargeTimerTimeout() 
-	{	
+	public void ShootWeapon()
+	{
 		Sprite.Play("shoot");
 		Bullet bullet = (Bullet)ResourceLoader.Load<PackedScene>(
 			"res:///julia/interactables/Bullet/Bullet.tscn"
@@ -230,8 +245,16 @@ public partial class WheelDroid : Character
 		bullet.Velocity = new Vector2(Sprite.FlipH ? -1.0f * BulletSpeed : BulletSpeed, 0.0f);
 		bullet.Damage = BulletDamage;
 		bullet.ImpactPushSpeed = ImpactPushSpeed;
+
 		bullet.AddCollisionExceptionWith(this);
 		GetParent().AddChild(bullet);
+
+		base.EmitPopSound();
+	}
+
+	public void OnChargeTimerTimeout() 
+	{	
+		ShootWeapon();
 	}
 
 	public void OnSleepTimerTimeout()
